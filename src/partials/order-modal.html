@@ -1,0 +1,56 @@
+<section class="order-modal-container">
+  <div class="order-modal-overlay is-open" data-modal >
+    <div class="order-modal" >
+      <h3 class="order-modal-text">Залишіть заявку на знайомство</h3>
+      <button class="order-modal-close-btn" type="button" data-modal-close>
+        <svg class="icon-close" width="32" height="32">
+          <use href="../img/sprite.svg#icon-close"></use>
+        </svg>
+      </button>
+
+      <form class="order-modal-form" action="" method="post" id="order-modal-form">
+        <div class="order-modal-group">
+          <label class="order-modal-label" for="username">
+            Ім’я*
+            <input
+              class="order-modal-input"
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Андрій"
+              required
+              autocomplete="off"
+            />
+          </label>
+        </div>
+        <div class="order-modal-group">
+          <label class="order-modal-label" for="phone">
+            Телефон*
+            <input
+              class="order-modal-input"
+              type="tel"
+              name="phone"
+              placeholder="+38 (095) 555 99 22"
+              required
+              autocomplete="off"
+            />
+          </label>
+        </div>
+        <div class="order-modal-group-textarea">
+          <label class="order-modal-label" for="message">
+            Напишіть ваш коментар
+            <textarea
+              class="order-modal-input-textarea"
+              name="message"
+              id="message"
+              placeholder="введіть текст"
+              required
+              autocomplete="off"
+            ></textarea>
+          </label>
+        </div>
+        <button class="order-modal-send-button" type="submit">Надіслати</button>
+      </form>
+    </div>
+  </div>
+</section>
