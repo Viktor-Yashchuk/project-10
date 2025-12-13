@@ -1,0 +1,144 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.footer {
+    background-color: var(--color-mariner, #c9bba3);
+    color: var(--color-mariner-darkest, #332c22);
+}
+
+/* Центровка на всех ширинах */
+.footer__container {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 48px;
+    padding-bottom: 32px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 24px;
+    text-align: center;
+}
+
+/* LOGO */
+.footer__logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.footer__logo-svg {
+    display: block;
+    width: 112px;
+    height: auto;
+}
+
+/* NAV */
+.footer__nav-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+ 
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+}
+
+.footer__nav-link {
+    text-decoration: none;
+    color: inherit;
+
+    font-size: 16px;
+   
+    font-weight: 600;
+    
+    line-height: 1.4;
+
+    transition: opacity 250ms ease;
+}
+
+.footer__nav-link:hover,
+.footer__nav-link:focus-visible {
+    opacity: 0.75;
+}
+
+/* SOCIAL  */
+.footer__social {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.footer__social-link:hover,
+.footer__social-link:focus-visible {
+    opacity: 0.75;
+    transform: translateY(-1px);
+}
+
+.footer__social-icon {
+    display: block;
+    fill: var(--color-mariner-darkest, #332c22);
+}
+
+/* BOTTOM */
+.footer__bottom {
+    border-top: 1px solid var(--opacity-neutral-darkest-15, rgba(51, 44, 34, 0.15));
+}
+
+.footer__bottom-container {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    text-align: center;
+}
+
+.footer__copyright {
+    margin: 0;
+    font-size: 12px;
+    color: inherit;
+}
+
+/* TABLET  */
+@media (min-width: 768px) {
+    .footer__nav-list {
+        flex-direction: row;
+        gap: 32px;
+    }
+
+    .footer__nav-link {
+        font-size: 16px;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 1440px) {
+    .footer__nav-list {
+        gap: 40px;
+    }
+
+    .footer__nav-link {
+        font-size: 16px;
+    }
+}
