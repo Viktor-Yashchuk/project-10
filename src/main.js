@@ -1,0 +1,8 @@
+import './js/refs.js'
+import './js/header.js'
+import './js/pets.js'
+import './js/details-modal.js'
+import './js/order-modal.js'
+import './js/about-us.js'
+import './js/faq.js'
+import './js/success.js'
