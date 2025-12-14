@@ -5,14 +5,17 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Raty from 'raty-js';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 axios.defaults.baseURL = 'https://paw-hut.b.goit.study';
 
 const fetchFeedbacks = async () => {
     const feedback = await axios.get('/api/feedbacks', {
         params: {
-            limit: 5,
-            page: 5,
+            limit: 25,
+            page: 18,
         },
     });
 
@@ -27,7 +30,28 @@ async function loadedSuccessSection() {
         console.log(getFeedback);
 
         renderFeedback(getFeedback.feedbacks);
-    } catch (err) {}
+
+        document.querySelectorAll('.rating').forEach(el => {
+            const score = el.dataset.score;
+
+            const raty = new Raty(el, {
+                score: score,
+                number: 5,
+                readOnly: true,
+                half: true,
+                starType: 'img',
+                starOn: '/public/icons/filled.svg',
+                starOff: '/public/icons/outline.svg',
+                starHalf: '/public/icons/half.svg',
+            });
+            raty.init();
+        });
+    } catch (err) {
+        iziToast.error({
+            message: 'Error',
+            position: 'center',
+        });
+    }
 }
 
 const renderFeedback = feedbacks => {
@@ -35,8 +59,10 @@ const renderFeedback = feedbacks => {
         .map(
             feedback =>
                 `<li class="swiper-slide success-item">
-            <div class="success-rate-star-box" data-raty>${feedback.rate}</div>
-            <p class="success-item-desc">${feedback.description}</p>
+            <div class="success-text-box">
+                <div class="success-rate-star-box rating" data-score="${feedback.rate}"></div>
+                <p class="success-item-desc">${feedback.description}</p>
+            </div>
             <p class="success-item-author">${feedback.author}</p>
         </li>`
         )
@@ -57,6 +83,8 @@ const swiper = new Swiper('.success-swiper', {
         el: '.success-swiper-pagination',
         type: 'bullets',
         clickable: true,
+        dynamicBullets: true,
+        dynamicMainBullets: 2,
     },
     navigation: {
         nextEl: '.success-button-forward',
@@ -64,10 +92,11 @@ const swiper = new Swiper('.success-swiper', {
         disabledClass: '.success-btn-disabled',
     },
     breakpoints: {
-        768: {
+        767: {
             slidesPerView: 2,
             pagination: {
                 dynamicBullets: true,
+                dynamicMainBullets: 1,
             },
         },
     },
@@ -88,3 +117,36 @@ swiper.on('slideChange', () => {
         refs.successBtnBack.classList.remove('success-btn-disabled');
     }
 });
+
+const loader = document.querySelector('.ajax-loader');
+
+loader.innerHTML = '';
+const total = 30;
+
+for (let i = 0; i < total; i++) {
+    const paw = document.createElement('div');
+    paw.classList.add('paw');
+    paw.style.animationDelay = `${(total - i) * 0.25}s`;
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.classList.add('icon');
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    use.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '#paw');
+    svg.appendChild(use);
+    paw.appendChild(svg);
+    loader.appendChild(paw);
+}
+
+let pos = -200;
+const step = 1;
+const screenWidth = window.innerWidth;
+
+function walk() {
+    pos += step;
+    loader.style.left = pos + 'px';
+    if (pos > screenWidth) {
+        pos = -200;
+    }
+    requestAnimationFrame(walk);
+}
+
+// walk();
