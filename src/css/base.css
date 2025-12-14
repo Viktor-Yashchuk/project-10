@@ -46,6 +46,7 @@
   --font-family: 'IBM Plex Sans', sans-serif;
   --second-family: 'Open Sans', sans-serif;
   --modal-overlay: rgba(0, 0, 0, 0.25); 
+  --input-bc-focus: #eee9e3; 
 }
 
 html {

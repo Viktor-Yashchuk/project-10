@@ -1,15 +1,12 @@
-<section class="order-modal-container">
-  <div class="order-modal-overlay is-open" data-modal >
+<div class="order-modal-overlay is-open" data-modal>
     <div class="order-modal" >
-      <h3 class="order-modal-text">Залишіть заявку на знайомство</h3>
-      <button class="order-modal-close-btn" type="button" data-modal-close>
-        <svg class="icon-close" width="32" height="32">
-          <use href="../img/sprite.svg#icon-close"></use>
-        </svg>
-      </button>
-
-      <form class="order-modal-form" action="" method="post" id="order-modal-form">
-        <div class="order-modal-group">
+        <button class="order-modal-close-btn" type="button" data-modal-close>
+            <svg class="icon-close" width="24" height="24">
+                <use href="../img/sprite.svg#icon-close"></use>
+            </svg>
+        </button>
+        <h2 class="order-modal-title">Залишіть заявку на знайомство</h2>
+      <form class="order-modal-form" novalidate action="" method="post" id="order-modal-form">
           <label class="order-modal-label" for="username">
             Ім’я*
             <input
@@ -22,8 +19,7 @@
               autocomplete="off"
             />
           </label>
-        </div>
-        <div class="order-modal-group">
+       
           <label class="order-modal-label" for="phone">
             Телефон*
             <input
@@ -35,8 +31,7 @@
               autocomplete="off"
             />
           </label>
-        </div>
-        <div class="order-modal-group-textarea">
+ 
           <label class="order-modal-label" for="message">
             Напишіть ваш коментар
             <textarea
@@ -44,13 +39,12 @@
               name="message"
               id="message"
               placeholder="введіть текст"
-              required
               autocomplete="off"
             ></textarea>
           </label>
-        </div>
+      
         <button class="order-modal-send-button" type="submit">Надіслати</button>
       </form>
     </div>
   </div>
-</section>
+
