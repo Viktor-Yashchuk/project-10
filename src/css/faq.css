@@ -1,17 +1,13 @@
-.faq {
+.container {
   background-color: var(--color-scheme-1-background);
   color: var(--color-neutral-darkest);
   padding: 64px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.faq-container {
-  margin: 0 auto;
-  max-width: 343px; 
-}
-
-.title {
-  font-family: var(--second-family);
-  font-weight: 700;
+.faq-title {
   font-size: 36px;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -21,11 +17,8 @@
 
 .faq-list {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: grid;
   gap: 16px;
-  justify-items: center; 
 }
 
 .faq-item {
@@ -38,12 +31,9 @@
 
 .faq-trigger {
   width: 100%;
-  max-width: 335px;
-  min-height: 112px;
   padding: 20px 24px;
   display: flex;
   align-items: center; 
-  gap: 24px;
   background: transparent;
   justify-content: space-between;
   border: none;
@@ -65,21 +55,12 @@
   flex: 1;
 }
 
-.faq-icon {
-  width: 24px;
-  height: 24px;
-  flex: 0 0 24px;
-  display: grid;
-  place-items: center;
-  margin-top: 0; 
-}
-
 .faq-svg {
-  display: block; 
   transition: transform 200ms ease;
 }
 
 .ac .ac-panel {
+  height: 0;
   overflow: hidden;
   transition: height 350ms ease;
 }
@@ -110,9 +91,6 @@
 
 .faq-content p:last-child {
   margin-top: 12px;
-}
-
-.faq-content p:last-child {
   margin-bottom: 0;
 }
 
@@ -140,7 +118,7 @@
 
 /* ================= TABLET (768) ================= */
 @media (min-width: 768px) {
-  .faq {
+  .container {
     padding: 64px 32px;
   }
 
@@ -148,7 +126,7 @@
     max-width: 704px;
   }
 
-  .title {
+  .faq-title {
     margin-bottom: 80px;
   }
 
@@ -178,7 +156,7 @@
 
 /* ================= DESKTOP (1440) ================= */
 @media (min-width: 1440px) {
-  .faq {
+  .container {
     padding: 80px 64px;
   }
 
@@ -186,9 +164,8 @@
     max-width: 1158px;
   }
 
-  .title {
+  .faq-title {
     font-size: 48px; 
-    margin-bottom: 80px;
   }
 
   .faq-item {
