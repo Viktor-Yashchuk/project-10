@@ -54,6 +54,7 @@ html {
 body {
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
   margin: 0;
   background-color: var(--color-scheme-1-background);
   font-family: var(--font-family);
