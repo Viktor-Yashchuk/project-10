@@ -84,6 +84,7 @@ const swiper = new Swiper('.success-swiper', {
         clickable: true,
         dynamicBullets: true,
         dynamicMainBullets: 2,
+        resistance: true,
     },
     navigation: {
         nextEl: '.success-button-forward',
