@@ -128,36 +128,6 @@
   margin-bottom: 32px;
 }
 
-/* ctgs order */
-
-.pets-ctgs-list li:nth-child(2) {
-  order: 8;
-}
-
-.pets-ctgs-list li:nth-child(3) {
-  order: 7;
-}
-
-.pets-ctgs-list li:nth-child(4) {
-  order: 4;
-}
-
-.pets-ctgs-list li:nth-child(5) {
-  order: 3;
-}
-
-.pets-ctgs-list li:nth-child(6) {
-  order: 2;
-}
-
-.pets-ctgs-list li:nth-child(7) {
-  order: 5;
-}
-
-.pets-ctgs-list li:nth-child(8) {
-  order: 6;
-}
-
 .pets-ctgs-btn {
   background-color: transparent;
   border: 1px solid transparent;
