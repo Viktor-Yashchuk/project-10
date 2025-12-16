@@ -192,13 +192,13 @@
   }
   .header-button {
     display: inline-block;
-    width: 130px;
+    min-width: 130px;
     color: var(--color-white);
     border-radius: 8px;
     padding: 8px 20px;
     background-color: var(--color-mariner-dark);
-    transition: color 250ms ease-in-out, background-color 250ms ease-in-out,
-      box-shadow 250ms ease-in-out, opacity 250ms ease-in-out;
+    transition: border 250ms ease-in-out, color 250ms ease-in-out, background-color 250ms ease-in-out,
+    box-shadow 250ms ease-in-out, opacity 250ms ease-in-out;
   }
   .header-nav-list {
     display: flex;
