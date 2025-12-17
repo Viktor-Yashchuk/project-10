@@ -1,18 +1,22 @@
 import axios from "axios";
 import iziToast from "izitoast";
 
-const formElem = document.querySelector("#order-modal-form");
-
+const refs = {
+  modal: document.querySelector("#order-modal-form"),
+  closeModalBtn: document.querySelector("[data-modal-close]"),
+  form: document.querySelector("#order-modal-form"),
+};
+ 
 formElem.addEventListener ("submit", async e => {
   e.preventDefault();
   const { email, phone } = e.target.elements;
   const formData = {
-    name: userName.value,
-    phone: phone.value,
-    animalId: `${animalId}`,
-    comment: `${message.value}`,
+    name: userName.value.trim(),
+    phone: phone.value.trim(),
+    animalId,
+    comment: message.value.trim(),
   }
-  try {const response = axios.post ("https://paw-hut.b.goit.study/api/orders", formData);
+  try {const response = await axios.post ("https://paw-hut.b.goit.study/api/orders", formData);
 
 const orderData = response.data;
 console.log(orderData);
@@ -22,6 +26,8 @@ iziToast.success({
     position: `topLeft`,
 });
 e.target.reset();
+closeModal();
+
 } catch (error) {
     iziToast.error({
         title: "Error", 
@@ -32,18 +38,18 @@ e.target.reset();
 });
 
 
-(() => {
-  const refs = {
-    openModalBtn: document.querySelector("[data-modal-open]"),
-    closeModalBtn: document.querySelector("[data-modal-close]"),
-    modal: document.querySelector("[data-modal]"),
-  };
+// (() => {
+//   const refs = {
+//     openModalBtn: document.querySelector("[data-modal-open]"),
+//     closeModalBtn: document.querySelector("[data-modal-close]"),
+//     modal: document.querySelector("[data-modal]"),
+//   };
 
-  refs.openModalBtn.addEventListener("click", toggleModal);
-  refs.closeModalBtn.addEventListener("click", toggleModal);
+//   refs.openModalBtn.addEventListener("click", toggleModal);
+//   refs.closeModalBtn.addEventListener("click", toggleModal);
 
-  function toggleModal() {
+//   function toggleModal() {
     
-    refs.modal.classList.toggle("is-open");
-  }
-})();
+//     refs.modal.classList.toggle("is-open");
+//   }
+// })();

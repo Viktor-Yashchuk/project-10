@@ -134,6 +134,7 @@ color: var(--opacity-neutral-darkest-60);
 outline: 1px solid transparent;
 transition: outline-color 250ms ease;
 min-height: 180px;
+resize: none;
 }
 
 .order-modal-send-button {
