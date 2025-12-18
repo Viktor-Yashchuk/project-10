@@ -73,10 +73,11 @@
 
 /* mobile */
 
-.pets-container {
-  padding-top: 64px;
+.pets-section {
   padding-bottom: 32px;
+}
 
+.pets-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -279,11 +280,6 @@
 /* desktop */
 
 @media only screen and (min-width: 1440px) {
-  .pets-container {
-    padding-top: 80px;
-    margin-bottom: 40px;
-  }
-
   .pets-title {
     font-size: 48px;
   }
