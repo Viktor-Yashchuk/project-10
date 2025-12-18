@@ -10,70 +10,57 @@ const aboutBtnBack = document.querySelector('.about-swiper-button-prev');
 const data = [
   {
     id: 1,
-    imageURL: './img/about-us/mobile/slide-p1-mob.webp',
     description:
       'Все почалося у 2015 році з кількох небайдужих людей та одного врятованого собаки. Сьогодні ми — один з найбільших притулків у регіоні, але наша мета незмінна: дати другий шанс тим, кого зрадили.',
   },
   {
     id: 2,
-    imageURL: '../img/about-us/mobile/slide-p2-mob.webp',
     description:
       'Ми рятуємо, реабілітуємо та знаходимо люблячі родини для безпритульних тварин. Наша мета — не просто дати прихисток, а й забезпечити кожному "хвостику" щасливе та повноцінне життя в новій родині.',
   },
   {
     id: 3,
-    imageURL: '../../img/about-us/mobile/slide-p3-mob.webp',
     description:
       '"Хатинка Лапок" — це команда професійних ветеринарів, кінологів та десятків волонтерів, які щодня вкладають свою душу та час у турботу про наших підопічних. Ми працюємо 24/7, бо їхнє життя залежить від нас.',
   },
   {
     id: 4,
-    imageURL: '/about-us/mobile/slide-p4-mob.webp',
     description:
       'Ми створили безпечний та комфортний простір. Кожна тварина отримує якісне харчування, своєчасну ветеринарну допомогу, проходить соціалізацію та гуляє на спеціально обладнаних майданчиках.',
   },
   {
     id: 5,
-    imageURL: '../about-us/mobile/slide-p5-mob.webp',
     description:
       'Ваша допомога — безцінна. Ви можете взяти тваринку додому, стати волонтером, допомогти фінансово або інформаційно. Кожен маленький внесок наближає нас до великої мети — світу без безпритульних тварин.',
   },
 ];
 
-const aboutRender = data.map(({ id, description, imageURL }) => {
+const BASE = import.meta.env.BASE_URL;
+
+const aboutRender = data.map(({ id, description }) => {
   return `<div class="swiper-slide about-slide">
           <picture>
             <source
               media="(min-width: 1440px)"
-              srcset="/img/about-us/desktop/slide-p${id}-desk.webp 1x,
-                /img/about-us/desktop/slide-p${id}-desk@2x.webp 2x
-              "
-            />
+              srcset="${BASE}about-us/desktop/slide-p${id}-desk.webp 1x, ${BASE}about-us/desktop/slide-p${id}-desk@2x.webp 2x">
             <source
               media="(min-width: 768px)"
-              srcset="/img/about-us/tablet/slide-p${id}-tab.webp   1x,
-                /img/about-us/tablet/slide-p${id}-tab@2x.webp 2x
-              "
-            />
+              srcset="${BASE}about-us/tablet/slide-p${id}-tab.webp 1x, ${BASE}about-us/tablet/slide-p${id}-tab@2x.webp 2x">
             <source
               media="(max-width: 767px)"
-              srcset="/img/about-us/mobile/slide-p${id}-mob.webp    1x,
-              /img/about-us/mobile/slide-p${id}-mob@2x.webp 2x
-              "
-            />
+              srcset="${BASE}about-us/mobile/slide-p${id}-mob.webp 1x, ${BASE}about-us/mobile/slide-p${id}-mob@2x.webp 2x">
             <img 
               class="about-picture"
-              src="${imageURL}"
-              alt="slide"
-            />
+              src="${BASE}about-us/mobile/slide-p${id}-mob.webp"
+              alt="slide"/>
           </picture>
           <div class="about-overlay">
           <p class="about-id">${description}</p>
           </div>
         </div>`;
-});
+}).join('');
 
-document.querySelector('.swiper-wrapper').innerHTML = aboutRender.join('');
+document.querySelector('.about-swiper-wrapper').innerHTML = aboutRender;
 
 const swiper = new Swiper('.about-mySwiper', {
   modules: [Navigation, Pagination, Keyboard],
@@ -86,7 +73,7 @@ const swiper = new Swiper('.about-mySwiper', {
   },
 
   pagination: {
-    el: '.swiper-pagination',
+    el: '.about .swiper-pagination',
     clickable: true,
   },
 
@@ -97,7 +84,7 @@ const swiper = new Swiper('.about-mySwiper', {
 });
 
 function updatePaginationPosition() {
-  const paginationEl = document.querySelector('.about .swiper-pagination');
+  const paginationEl = document.querySelector('.about .swiper-pagination'); // те саме
   if (window.innerWidth < 768) {
     paginationEl.classList.remove('center');
     paginationEl.classList.add('left');
@@ -125,7 +112,10 @@ const updateNavigationState = () => {
 swiper.on('slideChange', updateNavigationState);
 updateNavigationState();
 
+const aboutSection = document.querySelector('.about'); // знаходимо потрібну секцію (винести в рефс)
+
 swiper.on('slideChangeTransitionStart', () => {
+  if (!aboutSection) return;
   document
     .querySelectorAll('.about-id')
     .forEach(el => el.classList.remove('show'));
@@ -143,8 +133,6 @@ swiper.on('slideChangeTransitionEnd', () => {
   const overlay = activeSlide.querySelector('.about-overlay');
   if (overlay) overlay.classList.add('fade-out');
 });
-
-const aboutSection = document.querySelector('.about');
 
 const observer = new IntersectionObserver(
   entries => {
