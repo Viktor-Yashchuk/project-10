@@ -82,10 +82,20 @@ refs.form.addEventListener("submit", async e => {
 });
 
 /* ================= EXPORT ================= */
-/*
-  Коли зʼявиться кнопка відкриття:
-  document.querySelector("...").addEventListener("click", () => openModal(id));
-*/
+
+  // Коли зʼявиться кнопка відкриття:
+  const adoptButtons = document.querySelectorAll("[data-details-modal-adopt]");
+  adoptButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.animalId;
+      openModal(id);
+    });
+  });
+
+
+
+
+
 
 // import axios from "axios";
 // import iziToast from "izitoast";

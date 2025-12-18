@@ -3,6 +3,7 @@
   min-width: 320px;
   position: sticky;
   top: 0;
+  overflow: hidden;
   z-index: 1000;
   background-color: var(--color-scheme-1-background);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
@@ -25,24 +26,57 @@
   display: none;
 }
 .burger-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
   border: none;
   outline: none;
   background-color: transparent;
   padding: 12px;
-}
-.burger-btn-icon {
-  display: block;
   fill: var(--color-scheme-1-text);
 }
+
+.burger-btn > .mobile-burger-menu-top-line,
+.burger-btn>.mobile-burger-menu-mid-line,
+.burger-btn>.mobile-burger-menu-bot-line {
+  transition: transform ease-in-out 400ms;
+}
+
+.top-line {
+  transform: rotate(-315deg) translate(4px, 3px);
+}
+
+.mid-line {
+  transform: translateX(500px);
+}
+
+.bot-line {
+  transform: rotate(315deg) translate(4px, -3px);
+}
+
+.mobile-burger-menu-line:first-child {
+  display: block;
+  padding-top: 3px;
+}
+
+.mobile-burger-menu-line:nth-child(2) {
+  display: block;
+}
+
+.mobile-burger-menu-line:last-child {
+  display: block;
+  padding-bottom: 3px;
+}
+
 .mobile-menu {
   position: fixed;
-  top: 0;
+  top: 64px;
   left: 0;
   width: 100%;
   height: 100%;
   background: var(--color-scheme-1-background);
   transform: translateX(-100%);
-  transition: transform 250ms ease-in-out;
+  transition: transform 400ms ease-in-out;
   z-index: 1000;
 }
 .mobile-menu.is-open {
@@ -76,6 +110,7 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  padding-top: 40px;
 }
 .mobile-menu-nav-link {
   position: relative;

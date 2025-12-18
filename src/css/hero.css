@@ -32,10 +32,11 @@
   display: inline-block;
   font-weight: 400;
   border-radius: 8px;
-  padding: 12px 24px;
+  padding: 12px 22px;
   width: 171px;
   height: 45px;
   font-size: 14px;
+  border: 1px solid var(--color-mariner-dark);
   background-color: var(--color-mariner-dark);
   color: var(--color-white);
   transition: border-color 250ms ease-in-out, background-color 250ms ease-in-out,
