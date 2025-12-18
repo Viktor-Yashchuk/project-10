@@ -39,7 +39,7 @@
 .burger-btn > .mobile-burger-menu-top-line,
 .burger-btn>.mobile-burger-menu-mid-line,
 .burger-btn>.mobile-burger-menu-bot-line {
-  transition: transform ease-in-out 250ms;
+  transition: transform ease-in-out 400ms;
 }
 
 .top-line {
@@ -76,7 +76,7 @@
   height: 100%;
   background: var(--color-scheme-1-background);
   transform: translateX(-100%);
-  transition: transform 250ms ease-in-out;
+  transition: transform 400ms ease-in-out;
   z-index: 1000;
 }
 .mobile-menu.is-open {
