@@ -32,8 +32,8 @@ import{i as T,a as $,S as O,N as I,P as H,K as W,A as J,R as Q,M as X}from"./ass
     <div class="details-modal-backdrop" data-details-modal-backdrop>
       <div class="details-modal" role="dialog" aria-modal="true" aria-labelledby="details-modal-title" aria-describedby="details-modal-description">
         <button class="details-modal-close" type="button" aria-label="Закрити" data-details-modal-close>
-        <svg class="details-modal-close-icon" width="24" height="24">
-        <use href="${l}sprite.svg#icon-close"></use></svg></button>
+        <svg class="details-modal-close-icon" width="14" height="14">
+        <use href="${l}sprite.svg#icon-close2"></use></svg></button>
         <div class="details-modal-body">
           <div class="details-modal-left">
             <img class="details-modal-img" src="${e.image}" alt="${e.species}" />
