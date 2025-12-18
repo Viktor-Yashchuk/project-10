@@ -3,40 +3,78 @@ const mobileMenu = document.querySelector('.mobile-menu');
 const closeBtn = document.querySelector('.mobile-menu-btn');
 const mobileMenuContainer = document.querySelector('.mobile-menu-container');
 const mobileLinks = document.querySelectorAll(
-  '.mobile-menu-nav-link, .mobile-menu-button'
+    '.mobile-menu-nav-link, .mobile-menu-button'
 );
+const burgerTopLine = document.querySelector('.mobile-burger-menu-top-line');
+const burgerMidLine = document.querySelector('.mobile-burger-menu-mid-line');
+const burgerBotLine = document.querySelector('.mobile-burger-menu-bot-line');
+const header = document.querySelector('.header');
+
 const onEscPress = event => {
-  if (event.key === 'Escape') {
-    closeMobileMenu();
-  }
+    if (event.key === 'Escape') {
+        closeMobileMenu();
+    }
+};
+
+const burgerMenuAnim = () => {
+    burgerTopLine.classList.toggle('top-line');
+    burgerMidLine.classList.toggle('mid-line');
+    burgerBotLine.classList.toggle('bot-line');
+};
+
+const closeBurgerMenuAnim = () => {
+    burgerTopLine.classList.remove('top-line');
+    burgerMidLine.classList.remove('mid-line');
+    burgerBotLine.classList.remove('bot-line');
+};
+
+const openBurgerMenuAnim = () => {
+    burgerTopLine.classList.add('top-line');
+    burgerMidLine.classList.add('mid-line');
+    burgerBotLine.classList.add('bot-line');
 };
 
 const openMobileMenu = () => {
-  mobileMenu.classList.add('is-open');
-  document.body.style.overflow = 'hidden';
-  document.addEventListener('keydown', onEscPress);
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onEscPress);
+
+    mobileMenu.classList.toggle('is-open');
+    if (mobileMenu.className !== 'mobile-menu is-open')
+        document.body.style.overflow = '';
+
+    burgerMenuAnim();
 };
 
 const closeMobileMenu = () => {
-  mobileMenu.classList.remove('is-open');
-  document.body.style.overflow = '';
-  document.removeEventListener('keydown', onEscPress);
+    document.body.style.overflow = '';
+    mobileMenu.classList.remove('is-open');
+    document.removeEventListener('keydown', onEscPress);
+
+    closeBurgerMenuAnim();
 };
 
 const onBackdropClick = event => {
-  const isInteractive = event.target.closest(
-    '.mobile-menu-btn, .mobile-menu-nav-link, .mobile-menu-button'
-  );
+    const isInteractive = event.target.closest(
+        '.mobile-menu-btn, .mobile-menu-nav-link, .mobile-menu-button'
+    );
 
-  if (isInteractive) return;
+    if (isInteractive) return;
 
-  closeMobileMenu();
+    closeMobileMenu();
+};
+
+const onHeaderClick = event => {
+    const isInteractive = event.target.closest('.header-logo, .burger-btn');
+
+    if (isInteractive) return;
+
+    closeMobileMenu();
 };
 
 burgerBtn.addEventListener('click', openMobileMenu);
-closeBtn.addEventListener('click', closeMobileMenu);
+header.addEventListener('click', onHeaderClick);
 mobileMenu.addEventListener('click', onBackdropClick);
 
 mobileLinks.forEach(link => {
-  link.addEventListener('click', closeMobileMenu);
+    link.addEventListener('click', closeMobileMenu);
 });
