@@ -238,7 +238,16 @@ const initPets = async (page, categoryId) => {
       );
     } else refs.petsList.innerHTML = renderPets(pets.data.animals);
 
-    totalItems = pets.data.totalItems;
+      totalItems = pets.data.totalItems;
+      
+      const cards = refs.petsList.querySelectorAll('.pets-item');
+      cards.forEach((card, index) => {
+      const pet = pets.data.animals[index];
+      card.dataset.description = pet.description || '';
+      card.dataset.health = pet.healthStatus || '';
+      card.dataset.behavior = pet.behavior || '';
+      });
+      
   } catch (err) {
     toastError(err.message);
   }
