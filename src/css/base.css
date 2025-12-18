@@ -47,6 +47,10 @@
   --second-family: 'Open Sans', sans-serif;
   --shadow-1: rgba(0, 0, 0, 0.03);
   --shadow-2: rgba(0, 0, 0, 0.08);
+  --gradient-overlay-light: rgba(0, 0, 0, 0.18);
+  --gradient-overlay-dark: rgba(0, 0, 0, 0.63);
+  --shadow-light: rgba(0, 0, 0, 0.03);
+  --shadow-medium: rgba(0, 0, 0, 0.08);
 }
 
 html {
