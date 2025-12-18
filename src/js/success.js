@@ -8,6 +8,7 @@ import 'swiper/css/pagination';
 import Raty from 'raty-js';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import { BASE } from './config';
 
 axios.defaults.baseURL = 'https://paw-hut.b.goit.study';
 
@@ -39,9 +40,9 @@ async function loadedSuccessSection() {
                 readOnly: true,
                 half: true,
                 starType: 'img',
-                starOn: '/public/icons/filled.svg',
-                starOff: '/public/icons/outline.svg',
-                starHalf: '/public/icons/half.svg',
+                starOn: `${BASE}icons/filled.svg`,
+                starOff: `${BASE}icons/outline.svg`,
+                starHalf: `${BASE}icons/half.svg`,
             });
             raty.init();
         });
