@@ -249,7 +249,8 @@ const initPets = async (page, categoryId) => {
       
       const cards = refs.petsList.querySelectorAll('.pets-item');
       cards.forEach((card, index) => {
-      const pet = pets.data.animals[index];
+          const pet = pets.data.animals[index];
+          if(!pet) return
       card.dataset.description = pet.description || '';
       card.dataset.health = pet.healthStatus || '';
       card.dataset.behavior = pet.behavior || '';
