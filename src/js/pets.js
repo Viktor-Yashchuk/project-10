@@ -140,7 +140,14 @@ const onPaginationClick = async e => {
     currentPage = +btn.dataset.page;
   }
 
-  clearPets();
+  const top =
+    refs.petsList.getBoundingClientRect().top + window.pageYOffset - 200;
+
+  window.scrollTo({
+    top,
+    behavior: 'smooth',
+  });
+
   hidePagination();
   await initPets(currentPage, currentCtg);
   renderPagination();
