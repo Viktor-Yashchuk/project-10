@@ -1,5 +1,7 @@
 import { BASE } from './config.js';
 import { refs } from './refs.js';
+import { openOrderModal } from './order-modal.js';
+
 
 function createPetModalMarkup(pet) {
   return `
@@ -64,6 +66,8 @@ function openPetModal(pet) {
   // «Взяти додому» → логіка для Аніної секції
   adoptBtn.addEventListener('click', () => {
     closePetModal(backdrop);
+    openOrderModal(pet.id);
+
     // TODO: виклик модалки з формою заявки
   });
 }
@@ -79,6 +83,7 @@ refs.petsList.addEventListener('click', e => {
 
   const card = btn.closest('.pets-item');
   const pet = {
+    id: card.dataset.id,
     image: card.querySelector('.pets-img')?.src || '',
     species: card.querySelector('.pets-species')?.textContent || '',
     name: card.querySelector('.pets-name')?.textContent || '',
@@ -100,6 +105,7 @@ refs.petsList.addEventListener('keydown', e => {
         e.preventDefault();
     const card = btn.closest('.pets-item');
     const pet = {
+    id: card.dataset.id,
     image: card.querySelector('.pets-img')?.src || '',
     species: card.querySelector('.pets-species')?.textContent || '',
     name: card.querySelector('.pets-name')?.textContent || '',

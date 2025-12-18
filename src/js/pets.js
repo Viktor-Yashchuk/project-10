@@ -214,7 +214,8 @@ const getPets = async (page, categoryId) => {
 const renderPets = arr =>
   arr
     .map(
-      el => `<li class="pets-item" role="listitem">
+      el => `<li class="pets-item" role="listitem" data-id="${el._id}" data-description="${el.description || ''}" data-health="${el.healthStatus ||
+        ''}" data-behavior="${el.behavior || ''}">
     <img class="pets-img" src="${el.image}" alt="${el.species}">
     <p class="pets-species">${el.species}</p>
     <h3 class="pets-name">${el.name}</h3>
