@@ -343,8 +343,12 @@ window.addEventListener('resize', onResizePage);
 
 //load start page
 
-await initCtgs();
-await initPets(currentPage);
+const loadPage = async () => {
+  await initCtgs();
+  await initPets(currentPage);
 
-if (isMobile() && totalItems > limit) showMoreBtn();
-else if (!isMobile()) renderPagination();
+  if (isMobile() && totalItems > limit) showMoreBtn();
+  else if (!isMobile()) renderPagination();
+};
+
+loadPage();
