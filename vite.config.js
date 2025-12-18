@@ -4,11 +4,15 @@ import injectHTML from 'vite-plugin-html-inject';
 import FullReload from 'vite-plugin-full-reload';
 import SortCss from 'postcss-sort-media-queries';
 
-export default defineConfig(({ command }) => {
+export default defineConfig(({ mode, command }) => {
   return {
+    base: mode === 'production' ? '/project-10/' : '/',
+    publicDir: 'public',
+
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
+
     root: 'src',
     build: {
       sourcemap: true,
@@ -40,9 +44,7 @@ export default defineConfig(({ command }) => {
     plugins: [
       injectHTML(),
       FullReload(['./src/**/**.html']),
-      SortCss({
-        sort: 'mobile-first',
-      }),
+      SortCss({ sort: 'mobile-first' }),
     ],
   };
 });

@@ -45,6 +45,8 @@
   --color-red: #ae0000;
   --font-family: 'IBM Plex Sans', sans-serif;
   --second-family: 'Open Sans', sans-serif;
+  --shadow-1: rgba(0, 0, 0, 0.03);
+  --shadow-2: rgba(0, 0, 0, 0.08);
 <<<<<<< HEAD
   --modal-overlay: rgba(0, 0, 0, 0.25); 
   --input-bc-focus: #eee9e3; 

@@ -15,7 +15,8 @@
   transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
 }
 
-.footer-logo:active {
+.footer-logo:hover,
+.footer-logo:focus {
   transform: scale(1.04);
   opacity: 0.4;
 }
