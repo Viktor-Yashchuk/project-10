@@ -40,3 +40,9 @@ mobileMenu.addEventListener('click', onBackdropClick);
 mobileLinks.forEach(link => {
   link.addEventListener('click', closeMobileMenu);
 });
+
+window.addEventListener('resize', () => {
+  if (innerWidth >= 1440) document.body.style.overflow = '';
+
+  if (innerWidth < 1440) document.body.style.overflow = 'hidden';
+});
