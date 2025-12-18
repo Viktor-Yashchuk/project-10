@@ -8,8 +8,8 @@ function createPetModalMarkup(pet) {
     <div class="details-modal-backdrop" data-details-modal-backdrop>
       <div class="details-modal" role="dialog" aria-modal="true" aria-labelledby="details-modal-title" aria-describedby="details-modal-description">
         <button class="details-modal-close" type="button" aria-label="Закрити" data-details-modal-close>
-        <svg class="details-modal-close-icon" width="24" height="24">
-        <use href="${BASE}sprite.svg#icon-close"></use></svg></button>
+        <svg class="details-modal-close-icon" width="14" height="14">
+        <use href="${BASE}sprite.svg#icon-close2"></use></svg></button>
         <div class="details-modal-body">
           <div class="details-modal-left">
             <img class="details-modal-img" src="${pet.image}" alt="${pet.species}" />

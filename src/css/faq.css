@@ -27,6 +27,7 @@
   width: 100%;
   padding: 20px 24px;
   line-height: 0.5;
+  color: inherit;
 }
 
 .faq-trigger-text {

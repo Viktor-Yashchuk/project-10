@@ -2,6 +2,7 @@ import axios from 'axios';
 import { refs } from './refs.js';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import { BASE } from './config.js';
 
 //user device width check
 
@@ -49,7 +50,7 @@ function renderPagination() {
       <button class="pagination-btn-arrow" data-action="prev" aria-label="Попередня сторінка" ${
         currentPage === 1 ? 'disabled' : ''
       }><svg class="arrow-icon" width="24" height="24">
-          <use href="/img/sprite.svg#icon-arrow-back"></use>
+          <use href="${BASE}sprite.svg#icon-arrow-back"></use>
         </svg>
       </button>
     </li>`;
@@ -98,7 +99,7 @@ function renderPagination() {
       <button class="pagination-btn-arrow" data-action="next" aria-label="Наступна сторінка" ${
         currentPage === totalPages ? 'disabled' : ''
       }> <svg class="arrow-icon" width="24" height="24">
-          <use href="/img/sprite.svg#icon-arrow-forward"></use>
+          <use href="${BASE}sprite.svg#icon-arrow-forward"></use>
         </svg>
       </button>
     </li>`;
