@@ -49,7 +49,7 @@ function createOrderModalMarkup() {
           </label>
 
           <label class="order-modal-label" for="message">
-            Коментар
+            Коментар*
             <textarea
               class="order-modal-input-textarea"
               name="message"
@@ -62,7 +62,6 @@ function createOrderModalMarkup() {
             <span id="comment-error" class="error-message">Коментар має бути від 5 до 300 символів.</span>
             <span id="comment-counter" class="counter"></span>
           </label>
-
           <button class="order-modal-send-button" type="submit">Надіслати заявку</button>
         </form>
       </div>
@@ -127,6 +126,12 @@ export function openOrderModal(animalId) {
 
   const phoneInput = backdrop.querySelector('#phone');
 
+  phoneInput.addEventListener('focus', () => {
+    if (phoneInput.value.trim() === '') {
+      phoneInput.value = '+38 (0';
+    }
+  });
+
   phoneInput.addEventListener('input', () => {
     let digits = phoneInput.value.replace(/\D/g, '');
 
@@ -139,9 +144,7 @@ export function openOrderModal(animalId) {
       digits = '380' + digits;
     }
 
-    let formatted = '';
-    if (digits.length > 0) formatted = '+38';
-    if (digits.length > 2) formatted += ' (0';
+    let formatted = '+38 (0';
     if (digits.length > 3) formatted += digits.substring(3, 5);
     if (digits.length > 5) formatted += ') ' + digits.substring(5, 8);
     if (digits.length > 8) formatted += ' ' + digits.substring(8, 10);
@@ -304,10 +307,38 @@ export function openOrderModal(animalId) {
 
       Swal.fire({
         icon: 'success',
-        title: 'Вітаємо! Заявку надіслано!',
-        text: 'Ваш пухнастик буде скоро з вами.😻',
+        title: `Вітаємо, ${cleanName}! Заявку надіслано!😻Ваш пухнастик буде скоро з вами.`,
+        html: `
+    <div class="dog-container">
+      <div class="dog">
+        <div class="dog-head">
+          <div class="dog-ears ears-left"></div>
+          <div class="dog-ears ears-right"></div>
+          <div class="dog-eyes"></div>
+          <div class="dog-mouth">
+            <div class="dog-nose"></div>
+            <div class="dog-tongue"></div>
+          </div>
+        </div>
+        <div class="dog-tail"></div>
+        <div class="dog-body">
+          <div class="dog-foot"></div>
+        </div>
+        <a href="https://github.com/Viktor-Yashchuk/project-10" 
+                target="_blank" 
+                class="ball" 
+                style="cursor: pointer; text-decoration: none;">
+            No Bugs Just Pugs</a>
+		   </div>
+      </div> `,
         background: 'var(--color-scheme-1-foreground)', 
         confirmButtonColor: 'var(--color-mariner-dark)',
+        showClass: {
+          popup: 'animate__animated animate__bounceIn'
+  },
+        hideClass: {
+         popup: 'animate__animated animate__fadeOutUp'
+  }
       });
 
       closeOrderModal(backdrop);

@@ -91,7 +91,30 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
+  overflow: visible;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
+.mobile-menu-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mobile-menu-container::-webkit-scrollbar-track {
+  background: var(--color-mariner-lightest);
+  border-radius: 8px;
+}
+
+.mobile-menu-container::-webkit-scrollbar-thumb {
+  background: var(--color-mariner-dark);
+  border-radius: 8px;
+  border: 2px solid var(--color-mariner-lightest);
+}
+
+.mobile-menu-container::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neutral-darkest);
+}
+
 .mobile-menu-header {
   display: flex;
   align-items: center;
