@@ -216,7 +216,7 @@ const renderPets = arr =>
     .map(
       el => `<li class="pets-item" role="listitem" data-id="${el._id}" data-description="${el.description || ''}" data-health="${el.healthStatus ||
         ''}" data-behavior="${el.behavior || ''}">
-    <img class="pets-img" src="${el.image}" alt="${el.species}">
+    <img class="pets-img" src="${el.image}" alt="${el.species}" loading="lazy" decoding="async">
     <p class="pets-species">${el.species}</p>
     <h3 class="pets-name">${el.name}</h3>
     <ul class="pets-own-ctgs-list">${el.categories
@@ -227,7 +227,7 @@ const renderPets = arr =>
     <li><p>${el.gender}</p></li>
     </ul>
     <p class="pets-short-desc">${el.shortDescription}</p>
-    <button class="pets-modal-btn" type="submit">Дізнатись більше</button>
+    <button class="pets-modal-btn" type="button">Дізнатись більше</button>
 </li>`
     )
     .join('');

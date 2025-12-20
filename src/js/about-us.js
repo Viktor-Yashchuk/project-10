@@ -51,7 +51,7 @@ const aboutRender = data.map(({ id, description }) => {
             <img 
               class="about-picture"
               src="${BASE}about-us/mobile/slide-p${id}-mob.webp"
-              alt="slide"/>
+              alt="slide" loading="lazy" decoding="async"/>
           </picture>
           <div class="about-overlay">
           <p class="about-id">${description}</p>
@@ -83,7 +83,7 @@ const swiper = new Swiper('.about-mySwiper', {
 });
 
 function updatePaginationPosition() {
-  const paginationEl = document.querySelector('.about .swiper-pagination'); // те саме
+  const paginationEl = document.querySelector('.about .swiper-pagination');
   if (window.innerWidth < 768) {
     paginationEl.classList.remove('center');
     paginationEl.classList.add('left');
@@ -111,7 +111,7 @@ const updateNavigationState = () => {
 swiper.on('slideChange', updateNavigationState);
 updateNavigationState();
 
-const aboutSection = document.querySelector('.about'); // знаходимо потрібну секцію (винести в рефс)
+const aboutSection = document.querySelector('.about');
 
 swiper.on('slideChangeTransitionStart', () => {
   if (!aboutSection) return;
