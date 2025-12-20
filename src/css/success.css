@@ -63,8 +63,8 @@ body .success .swiper-pagination-bullet-active {
   min-height: 48px;
   background-color: var(--color-mariner-lighter);
   cursor: pointer;
-  transition: border-color ease-in-out 250ms, box-shadow ease-in-out 250ms,
-    opacity ease-in-out 250ms;
+  transition: border-color ease-in-out 500ms, box-shadow ease-in-out 500ms,
+    opacity ease-in-out 500ms;
 }
 
 .success-btn:hover {

@@ -60,6 +60,7 @@ function createOrderModalMarkup() {
               autocomplete="off"
             ></textarea>
             <span id="comment-error" class="error-message">Коментар має бути від 5 до 300 символів.</span>
+            <span id="comment-counter" class="counter"></span>
           </label>
 
           <button class="order-modal-send-button" type="submit">Надіслати заявку</button>
@@ -130,7 +131,6 @@ export function openOrderModal(animalId) {
     let digits = phoneInput.value.replace(/\D/g, '');
 
     if (digits.startsWith('380')) {
-      // ок
     } else if (digits.startsWith('0')) {
       digits = '380' + digits.slice(1);
     } else if (digits.startsWith('3')) {
@@ -157,9 +157,11 @@ export function openOrderModal(animalId) {
 
   const commentInput = backdrop.querySelector('#message');
   const commentError = backdrop.querySelector('#comment-error');
+  const commentCounter = backdrop.querySelector('#comment-counter');
 
-  commentInput.addEventListener('input', () => {
+  function validateComment() {
     const length = commentInput.value.trim().length;
+    commentCounter.textContent = `${length}/300`;
 
     if (length === 0) {
       commentError.textContent = 'Коментар не може бути порожнім';
@@ -174,16 +176,10 @@ export function openOrderModal(animalId) {
       commentError.textContent = '';
       commentInput.classList.remove('invalid');
     }
-  });
+  }
 
-  commentInput.addEventListener('blur', () => {
-    const length = commentInput.value.trim().length;
-    if (length < 5) {
-      commentInput.classList.add('invalid');
-    } else {
-      commentInput.classList.remove('invalid');
-    }
-  });
+  commentInput.addEventListener('input', validateComment);
+  commentInput.addEventListener('blur', validateComment);
   
   const inputs = backdrop.querySelectorAll('.order-modal-input, .order-modal-input-textarea');
   inputs.forEach(input => {
@@ -231,6 +227,8 @@ export function openOrderModal(animalId) {
         icon: 'warning',
         title: 'Перевірте ім’я',
         text: 'Ім’я має містити щонайменше 2 літери.',
+        background: 'var(--color-scheme-1-foreground)', 
+        confirmButtonColor: 'var(--color-mariner-dark)',
       });
       nameInput.focus();
       return;
@@ -242,6 +240,8 @@ export function openOrderModal(animalId) {
         icon: 'warning',
         title: 'Перевірте телефон',
         text: 'Формат телефону має бути 380XXXXXXXXX',
+        background: 'var(--color-scheme-1-foreground)', 
+        confirmButtonColor: 'var(--color-mariner-dark)',
       });
       phoneInput.focus();
       return;
@@ -254,6 +254,8 @@ export function openOrderModal(animalId) {
       icon: 'warning',
       title: 'Перевірте коментар',
       text: 'Коментар не може бути порожнім.',
+      background: 'var(--color-scheme-1-foreground)', 
+      confirmButtonColor: 'var(--color-mariner-dark)',
     });
     commentInput.focus();
     return;
@@ -263,6 +265,8 @@ export function openOrderModal(animalId) {
       icon: 'warning',
       title: 'Перевірте коментар',
       text: `Коментар має бути не менше 5 символів. Зараз ви ввели ${comment.length}.`,
+      background: 'var(--color-scheme-1-foreground)', 
+      confirmButtonColor: 'var(--color-mariner-dark)',
     });
     commentInput.focus();''
     return;
@@ -273,6 +277,8 @@ export function openOrderModal(animalId) {
         icon: 'warning',
         title: 'Перевірте форму',
         text: 'Будь ласка, заповніть усі поля правильно.',
+        background: 'var(--color-scheme-1-foreground)', 
+        confirmButtonColor: 'var(--color-mariner-dark)',
       });
       return;
     }
@@ -311,6 +317,8 @@ export function openOrderModal(animalId) {
         icon: 'error',
         title: 'Помилка',
         text: err.message,
+        background: 'var(--color-scheme-1-foreground)', 
+        confirmButtonColor: 'var(--color-mariner-dark)',
       });
     }
   });

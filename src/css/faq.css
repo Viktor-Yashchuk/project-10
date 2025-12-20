@@ -28,6 +28,12 @@
   padding: 20px 24px;
   line-height: 0.5;
   color: inherit;
+  transition: background-color 500ms ease-in-out, transform 500ms ease-in-out;
+}
+
+.faq-trigger.ac-trigger:hover {
+  background-color: var(--color-mariner);
+  transform: scale(1.007);
 }
 
 .faq-trigger-text {
@@ -38,7 +44,7 @@
 }
 
 .faq-svg {
-  transition: transform 250ms ease-in-out;
+  transition: transform 500ms ease-in-out;
 }
 
 .ac.is-active .faq-svg {

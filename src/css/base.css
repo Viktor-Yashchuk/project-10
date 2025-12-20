@@ -70,6 +70,16 @@ body {
   line-height: 1.5;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: var(--color-mariner-lightest);;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-mariner-dark);
+  border-radius: 4px;
+}
+
 section {
   padding: 64px 0;
 }

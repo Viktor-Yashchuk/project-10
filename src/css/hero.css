@@ -39,15 +39,16 @@
   border: 1px solid var(--color-mariner-dark);
   background-color: var(--color-mariner-dark);
   color: var(--color-white);
-  transition: border-color 250ms ease-in-out, background-color 250ms ease-in-out,
-    color 250ms ease-in-out, box-shadow 250ms ease-in-out;
+  transition: border-color 500ms ease-in-out, background-color 500ms ease-in-out,
+    color 500ms ease-in-out, box-shadow 500ms ease-in-out;
 }
 
 .hero-btn:hover,
 .hero-btn:focus {
   border-color: var(--color-mariner-dark);
-  background-color: var(--color-mariner-lighter);
+  /* background-color: var(--color-mariner-lighter); */
   color: var(--color-neutral-darkest);
+  background-color: var(--color-mariner);
 }
 
 .hero-btn:active {
