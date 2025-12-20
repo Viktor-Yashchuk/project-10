@@ -1,16 +1,18 @@
+@import 'modern-normalize/modern-normalize.css';
+
 /* Common styles */
-@import url('./reset.css');
-@import url('./base.css');
-@import url('./container.css');
-@import url('./animations.css');
+@import './reset.css';
+@import './base.css';
+@import './container.css';
+@import './animations.css';
 
 /* Sections style */
-@import url('./header.css');
-@import url('./hero.css');
-@import url('./pets.css');
-@import url('./about-us.css');
-@import url('./faq.css');
-@import url('./success.css');
-@import url('./details-modal.css');
-@import url('./order-modal.css');
-@import url('./footer.css');
+@import './header.css';
+@import './hero.css';
+@import './pets.css';
+@import './about-us.css';
+@import './faq.css';
+@import './success.css';
+@import './details-modal.css';
+@import './order-modal.css';
+@import './footer.css';
