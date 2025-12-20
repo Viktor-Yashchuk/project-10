@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/project-10/assets/favicon-CYQu2Qjh.svg" />
@@ -10,18 +10,11 @@
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100..700&family=Open+Sans:wght@700&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/3.0.1/modern-normalize.min.css"
-      integrity="sha512-q6WgHqiHlKyOqslT/lgBgodhd03Wp4BEqKeW6nNtlOY4quzyG3VoQKFrieaCeSnuVseNKRGpGeDU3qPmabCANg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
     <title>Хатинка Лапок</title>
     <script type="module" crossorigin src="/project-10/index.js"></script>
     <link rel="modulepreload" crossorigin href="/project-10/assets/vendor-6LYjMKHJ.js">
     <link rel="stylesheet" crossorigin href="/project-10/assets/vendor-5bZYjYmF.css">
-    <link rel="stylesheet" crossorigin href="/project-10/assets/index-AnEbS3O0.css">
+    <link rel="stylesheet" crossorigin href="/project-10/assets/index-B27iGvbs.css">
   </head>
   <body>
     <header class="header">
@@ -95,6 +88,28 @@
 
     <main>
       <section class="hero-section">
+  <picture class="hero-background">
+    <source
+      media="(min-width: 1440px)"
+      srcset="/project-10/assets/hero-desk-Cb1QqXId.webp 1x, /project-10/assets/hero-desk@2x-D6H8t3dM.webp 2x"
+    />
+    <source
+      media="(min-width: 768px)"
+      srcset="/project-10/assets/hero-tab-BJ8NZO1m.webp 1x, /project-10/assets/hero-tab@2x-BFRfQ-TT.webp 2x"
+    />
+    <source
+      media="(max-width: 767px)"
+      srcset="/project-10/assets/hero-mob-QWhGpExW.webp 1x, /project-10/assets/hero-mob@2x-BL8SxTG1.webp 2x"
+    />
+    <img
+      class="hero-picture"
+      src="/project-10/assets/hero-mob-QWhGpExW.webp"
+      alt="Кіт і собака"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </picture>
   <div class="container hero-container">
     <h1 class="hero-title">
       Кожне життя має значення. Знайди свого вірного друга
@@ -107,8 +122,8 @@
   </div>
 </section>
 
-      <section class="pets-section">
-  <div class="container pets-container" id="pets">
+      <section class="pets-section" id="pets">
+  <div class="container pets-container">
     <h2 class="pets-title">Наші хвостики</h2>
     <p class="pets-subtitle">Вони дуже чекають на знайомство з вами</p>
     <ul class="pets-ctgs-list" role="list"></ul>
@@ -425,59 +440,7 @@
 
       <div id="modal-root"></div>
 
-      <!-- <div class="order-modal-overlay" data-modal>
-    <div class="order-modal" >
-        <button class="order-modal-close-btn" aria-label="Close modal"
- type="button" data-modal-close>
-            <svg class="icon-close" width="24" height="24">
-                <use href="../public/sprite.svg#icon-close"></use>
-            </svg>
-        </button>
-        <h2 class="order-modal-title">Залишіть заявку на знайомство</h2>
-      <form class="order-modal-form" novalidate method="post" id="order-modal-form">
-          <label class="order-modal-label" for="username">
-            Ім’я*
-            <input
-              class="order-modal-input"
-              type="text"
-              id="username"
-              name="username"
-              placeholder="Андрій"
-              required
-              autocomplete="off"
-            />
-          </label>
-       
-          <label class="order-modal-label" for="phone">
-            Телефон*
-            <input
-              class="order-modal-input"
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder="+38 (095) 555 99 22"
-              required
-              autocomplete="off"
-            />
-          </label>
- 
-          <label class="order-modal-label" for="message">
-            Напишіть ваш коментар
-            <textarea
-              class="order-modal-input-textarea"
-              name="message"
-              id="message"
-              placeholder="введіть текст"
-              autocomplete="off"
-            ></textarea>
-          </label>
       
-        <button class="order-modal-send-button" type="submit">Надіслати</button>
-      </form>
-    </div>
-  </div> -->
-
-
     </main>
 
     <section class="footer">
