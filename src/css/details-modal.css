@@ -69,6 +69,7 @@
 .details-modal-close-icon {
   pointer-events: none;
   display: block;
+  outline: none;
 }
 
 .details-modal-body {

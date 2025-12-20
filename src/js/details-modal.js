@@ -63,12 +63,9 @@ function openPetModal(pet) {
     }
     window.addEventListener('keydown', onEscClose);
 
-  // «Взяти додому» → логіка для Аніної секції
   adoptBtn.addEventListener('click', () => {
     closePetModal(backdrop);
     openOrderModal(pet.id);
-
-    // TODO: виклик модалки з формою заявки
   });
 }
 

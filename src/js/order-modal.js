@@ -22,10 +22,13 @@ function createOrderModalMarkup() {
               type="text"
               id="username"
               name="username"
-              placeholder="Андрій"
+              placeholder="Ваше Ім'я"
               required
+              minlength="2"
+              maxlength="30"
               autocomplete="off"
             />
+            <span class="error-message">Ім’я має містити лише літери, пробіли, апострофи та дефіси.</span>
           </label>
 
           <label class="order-modal-label" for="phone">
@@ -35,10 +38,14 @@ function createOrderModalMarkup() {
               type="tel"
               id="phone"
               name="phone"
-              placeholder="+38 (095) 555 99 22"
+              placeholder="+38 (0XX) XXX XX XX"
               required
+              maxlength="19"
+              inputmode="numeric"
               autocomplete="off"
+              aria-describedby="phone-error"
             />
+            <span id="phone-error" class="error-message">Формат: +38 (0XX) XXX XX XX</span>
           </label>
 
           <label class="order-modal-label" for="message">
@@ -48,8 +55,11 @@ function createOrderModalMarkup() {
               name="message"
               id="message"
               placeholder="Напишіть ваш коментар"
+              minlength="5"
+              maxlength="300"
               autocomplete="off"
             ></textarea>
+            <span id="comment-error" class="error-message">Коментар має бути від 5 до 300 символів.</span>
           </label>
 
           <button class="order-modal-send-button" type="submit">Надіслати заявку</button>
@@ -61,12 +71,145 @@ function createOrderModalMarkup() {
 export function openOrderModal(animalId) {
   const markup = createOrderModalMarkup();
   document.body.insertAdjacentHTML('beforeend', markup);
-  document.body.classList.add('body-lock'); // блокуємо скрол
+  document.body.classList.add('body-lock');
 
   const backdrop = document.querySelector('[data-order-modal-backdrop]');
   const closeBtn = backdrop.querySelector('[data-order-modal-close]');
   const form = backdrop.querySelector('[data-order-modal-form]');
 
+  const nameInput = backdrop.querySelector('#username');
+  const ALLOWED_CHARS = /[^a-zA-Z\u0400-\u04FF\s'’`-]/g;
+
+  function sanitizeName(value) {
+    return value
+      .replace(ALLOWED_CHARS, '')    
+      .replace(/\s+/g, ' ')          
+      .replace(/-+/g, '-')            
+      .trim();
+  }
+
+  nameInput.addEventListener('input', (e) => {
+    const el = e.target;
+    const oldValue = el.value;
+    const oldPos = el.selectionStart;
+
+    const newValue = sanitizeName(oldValue);
+    if (newValue === oldValue) return;
+
+    el.value = newValue;
+    const diff = oldValue.length - newValue.length;
+    const newPos = Math.max(0, oldPos - diff);
+    el.setSelectionRange(newPos, newPos);
+  });
+
+  nameInput.addEventListener('paste', (e) => {
+    e.preventDefault();
+    const text = (e.clipboardData || window.clipboardData).getData('text');
+    const clean = sanitizeName(text);
+
+    const el = e.target;
+    const start = el.selectionStart;
+    const end = el.selectionEnd;
+
+    const before = el.value.slice(0, start);
+    const after = el.value.slice(end);
+
+    el.value = sanitizeName(before + clean + after);
+
+    const caret = (before + clean).length;
+    el.setSelectionRange(caret, caret);
+  });
+
+  nameInput.addEventListener('blur', (e) => {
+    e.target.value = sanitizeName(e.target.value);
+  });
+
+  const phoneInput = backdrop.querySelector('#phone');
+
+  phoneInput.addEventListener('input', () => {
+    let digits = phoneInput.value.replace(/\D/g, '');
+
+    if (digits.startsWith('380')) {
+      // ок
+    } else if (digits.startsWith('0')) {
+      digits = '380' + digits.slice(1);
+    } else if (digits.startsWith('3')) {
+      digits = digits;
+    } else if (digits.length > 0) {
+      digits = '380' + digits;
+    }
+
+    let formatted = '';
+    if (digits.length > 0) formatted = '+38';
+    if (digits.length > 2) formatted += ' (0';
+    if (digits.length > 3) formatted += digits.substring(3, 5);
+    if (digits.length > 5) formatted += ') ' + digits.substring(5, 8);
+    if (digits.length > 8) formatted += ' ' + digits.substring(8, 10);
+    if (digits.length > 10) formatted += ' ' + digits.substring(10, 12);
+
+    phoneInput.value = formatted;
+  });
+
+  function normalizePhone(value) {
+    const digits = value.replace(/\D/g, '');
+    return digits.slice(0, 12);
+  }
+
+  const commentInput = backdrop.querySelector('#message');
+  const commentError = backdrop.querySelector('#comment-error');
+
+  commentInput.addEventListener('input', () => {
+    const length = commentInput.value.trim().length;
+
+    if (length === 0) {
+      commentError.textContent = 'Коментар не може бути порожнім';
+      commentInput.classList.add('invalid');
+    } else if (length < 5) {
+      commentError.textContent = `Коментар має бути не менше 5 символів. Зараз ви ввели ${length}.`;
+      commentInput.classList.add('invalid');
+    } else if (length > 300) {
+      commentError.textContent = 'Коментар має бути не більше 300 символів';
+      commentInput.classList.add('invalid');
+    } else {
+      commentError.textContent = '';
+      commentInput.classList.remove('invalid');
+    }
+  });
+
+  commentInput.addEventListener('blur', () => {
+    const length = commentInput.value.trim().length;
+    if (length < 5) {
+      commentInput.classList.add('invalid');
+    } else {
+      commentInput.classList.remove('invalid');
+    }
+  });
+  
+  const inputs = backdrop.querySelectorAll('.order-modal-input, .order-modal-input-textarea');
+  inputs.forEach(input => {
+    input.addEventListener('input', () => {
+      input.value = input.value.trim();
+      if (input.validity.valueMissing ||
+          input.validity.patternMismatch ||
+          input.validity.tooShort ||
+          input.validity.tooLong) {
+        input.classList.add('invalid');
+      } else {
+        input.classList.remove('invalid');
+      }
+    });
+
+    input.addEventListener('blur', () => {
+      if (input.validity.valueMissing ||
+          input.validity.patternMismatch ||
+          input.validity.tooShort ||
+          input.validity.tooLong) {
+        input.classList.add('invalid');
+      } else {
+        input.classList.remove('invalid');
+      }
+    });
+  });
 
   closeBtn.addEventListener('click', () => closeOrderModal(backdrop));
   backdrop.addEventListener('click', e => {
@@ -79,12 +222,67 @@ export function openOrderModal(animalId) {
   form.addEventListener('submit', async e => {
     e.preventDefault();
 
+    inputs.forEach(input => input.dispatchEvent(new Event('blur')));
+
+    const cleanName = sanitizeName(nameInput.value);
+    const hasAtLeastTwoLetters = (cleanName.match(/[a-zA-Z\u0400-\u04FF]/g) || []).length >= 2;
+    if (!cleanName || !hasAtLeastTwoLetters) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Перевірте ім’я',
+        text: 'Ім’я має містити щонайменше 2 літери.',
+      });
+      nameInput.focus();
+      return;
+    }
+
+    const normalizedPhone = normalizePhone(phoneInput.value);
+    if (!/^380\d{9}$/.test(normalizedPhone)) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Перевірте телефон',
+        text: 'Формат телефону має бути 380XXXXXXXXX',
+      });
+      phoneInput.focus();
+      return;
+    }
+
+  const commentInput = backdrop.querySelector('#message');
+  const comment = commentInput.value.trim();
+  if (comment.length === 0) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Перевірте коментар',
+      text: 'Коментар не може бути порожнім.',
+    });
+    commentInput.focus();
+    return;
+  }
+  if (comment.length < 5) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Перевірте коментар',
+      text: `Коментар має бути не менше 5 символів. Зараз ви ввели ${comment.length}.`,
+    });
+    commentInput.focus();''
+    return;
+  }
+
+    if (!form.checkValidity()) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Перевірте форму',
+        text: 'Будь ласка, заповніть усі поля правильно.',
+      });
+      return;
+    }
+
     const formData = new FormData(form);
     const data = {
-      name: formData.get('username'),
-      phone: formData.get('phone'),
-      comment: formData.get('message'),
-      animalId: animalId, 
+      name: cleanName,
+      phone: normalizedPhone,
+      comment: formData.get('message').trim(),
+      animalId: animalId,
     };
 
     try {
@@ -94,17 +292,21 @@ export function openOrderModal(animalId) {
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) throw new Error('Помилка відправки заявки');
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok) throw new Error(result?.message || 'Помилка відправки заявки');
 
       Swal.fire({
         icon: 'success',
-        title: 'Заявку надіслано!',
-        text: 'Ми скоро з вами зв’яжемося.',
+        title: 'Вітаємо! Заявку надіслано!',
+        text: 'Ваш пухнастик буде скоро з вами.😻',
+        background: 'var(--color-scheme-1-foreground)', 
+        confirmButtonColor: 'var(--color-mariner-dark)',
       });
 
-      form.reset();
       closeOrderModal(backdrop);
     } catch (err) {
+
       Swal.fire({
         icon: 'error',
         title: 'Помилка',
@@ -114,10 +316,9 @@ export function openOrderModal(animalId) {
   });
 }
 
-
 function closeOrderModal(backdrop) {
+  const form = backdrop.querySelector('[data-order-modal-form]');
+  if (form) form.reset();
   backdrop.remove();
-  document.body.classList.remove('body-lock'); 
+  document.body.classList.remove('body-lock');
 }
-
-
