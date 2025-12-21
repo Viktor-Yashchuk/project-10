@@ -49,17 +49,16 @@ function createOrderModalMarkup() {
           </label>
 
           <label class="order-modal-label" for="message">
-            Коментар*
+            Коментар
             <textarea
               class="order-modal-input-textarea"
               name="message"
               id="message"
               placeholder="Напишіть ваш коментар"
-              minlength="5"
               maxlength="300"
               autocomplete="off"
             ></textarea>
-            <span id="comment-error" class="error-message">Коментар має бути від 5 до 300 символів.</span>
+            <span id="comment-error" class="error-message"></span>
             <span id="comment-counter" class="counter"></span>
           </label>
           <button class="order-modal-send-button" type="submit">Надіслати заявку</button>
@@ -167,18 +166,18 @@ export function openOrderModal(animalId) {
     commentCounter.textContent = `${length}/300`;
 
     if (length === 0) {
-      commentError.textContent = 'Коментар не може бути порожнім';
-      commentInput.classList.add('invalid');
-    } else if (length < 5) {
-      commentError.textContent = `Коментар має бути не менше 5 символів. Зараз ви ввели ${length}.`;
-      commentInput.classList.add('invalid');
-    } else if (length > 300) {
-      commentError.textContent = 'Коментар має бути не більше 300 символів';
-      commentInput.classList.add('invalid');
-    } else {
-      commentError.textContent = '';
-      commentInput.classList.remove('invalid');
-    }
+    commentError.textContent = '';
+    commentInput.classList.remove('invalid');
+  } else if (length < 5) {
+    commentError.textContent = 'Коментар має бути не менше 5 символів';
+    commentInput.classList.add('invalid');
+  } else if (length > 300) {
+    commentError.textContent = 'Коментар має бути не більше 300 символів';
+    commentInput.classList.add('invalid');
+  } else {
+    commentError.textContent = '';
+    commentInput.classList.remove('invalid');
+  }
   }
 
   commentInput.addEventListener('input', validateComment);
@@ -250,31 +249,13 @@ export function openOrderModal(animalId) {
       return;
     }
 
-  const commentInput = backdrop.querySelector('#message');
-  const comment = commentInput.value.trim();
-  if (comment.length === 0) {
-    Swal.fire({
-      icon: 'warning',
-      title: 'Перевірте коментар',
-      text: 'Коментар не може бути порожнім.',
-      background: 'var(--color-scheme-1-foreground)', 
-      confirmButtonColor: 'var(--color-mariner-dark)',
-    });
+    const comment = commentInput.value.trim();
+    validateComment();
+    if (commentInput.classList.contains('invalid')) {
     commentInput.focus();
     return;
   }
-  if (comment.length < 5) {
-    Swal.fire({
-      icon: 'warning',
-      title: 'Перевірте коментар',
-      text: `Коментар має бути не менше 5 символів. Зараз ви ввели ${comment.length}.`,
-      background: 'var(--color-scheme-1-foreground)', 
-      confirmButtonColor: 'var(--color-mariner-dark)',
-    });
-    commentInput.focus();''
-    return;
-  }
-
+ 
     if (!form.checkValidity()) {
       Swal.fire({
         icon: 'warning',
@@ -287,12 +268,19 @@ export function openOrderModal(animalId) {
     }
 
     const formData = new FormData(form);
+
+    const cleanCommentRaw = formData.get('message');
+    const cleanComment = (cleanCommentRaw || '').trim();
+    
     const data = {
       name: cleanName,
       phone: normalizedPhone,
-      comment: formData.get('message').trim(),
       animalId: animalId,
     };
+
+    if (cleanComment !== '') {
+  data.comment = cleanComment;
+}
 
     try {
       const response = await fetch('https://paw-hut.b.goit.study/api/orders', {
@@ -325,7 +313,8 @@ export function openOrderModal(animalId) {
           <div class="dog-foot"></div>
         </div>
         <a href="https://github.com/Viktor-Yashchuk/project-10" 
-                target="_blank" 
+                target="_blank"
+                rel="noopener noreferrer"
                 class="ball" 
                 style="cursor: pointer; text-decoration: none;">
             No Bugs Just Pugs</a>
