@@ -114,3 +114,17 @@
     transform: rotate(-57deg);
   }
 }
+
+@keyframes pawAnimation {
+  0% {
+    opacity: 1;
+  }
+
+  18% {
+    opacity: 0.2;
+  }
+
+  22% {
+    opacity: 0;
+  }
+}

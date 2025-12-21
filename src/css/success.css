@@ -100,9 +100,9 @@ body .success .swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
 .ajax-loader {
   position: absolute;
   top: 0%;
-  left: 80%;
+  left:65%;
   transform-origin: 50% 50%;
-  transform: translate(150%, 0) rotate(25deg);
+  transform: translate(150%, 0) rotate(37deg);
   font-size: 68px;
   width: 1em;
   height: 3em;
@@ -137,20 +137,6 @@ body .success .swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
 
 .no-cssanimations .ajax-loader .paw {
   opacity: 1;
-}
-
-@keyframes pawAnimation {
-  0% {
-    opacity: 1;
-  }
-
-  18% {
-    opacity: 0.2;
-  }
-
-  22% {
-    opacity: 0;
-  }
 }
 
 @media only screen and (min-width: 768px) {
@@ -189,9 +175,9 @@ body .success .swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
   }
 
   .ajax-loader {
-    top: -15%;
-    left: 60%;
-    transform: rotate(35deg) translate(-50%, 0%);
+    top: -5%;
+    left: 100%;
+    transform: rotate(54deg) translate(-50%, 0%);
     font-size: 76px;
   }
 
@@ -225,8 +211,8 @@ body .success .swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
 
   .ajax-loader {
     top: -15%;
-    left: 88%;
-    transform: rotate(70deg) translate(-50%, 0%);
+    left: 100%;
+    transform: rotate(65deg) translate(-50%, 0%);
     font-size: 100px;
   }
 

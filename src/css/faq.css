@@ -1,3 +1,8 @@
+.faq {
+  position: relative;
+  overflow: hidden;
+}
+
 .faq-wrapper {
   display: flex;
   flex-direction: column;
@@ -83,10 +88,65 @@
   margin-bottom: 12px;
 }
 
+
+.faq-ajax-loader {
+  position: absolute;
+  top: 0%;
+  left: -4%;
+  transform-origin: 50% 50%;
+  transform: translate(150%, 0) rotate(320deg);
+  font-size: 68px;
+  width: 1em;
+  height: 3em;
+  z-index: -1;
+}
+
+.faq-ajax-loader .paw {
+  display: block;
+  width: 1em;
+  height: 1em;
+  animation: 6000ms pawAnimation ease-in-out infinite;
+  opacity: 0;
+  transform: rotate(90deg);
+}
+
+.faq-ajax-loader .paw svg {
+  width: 100%;
+  height: 100%;
+}
+
+.faq-ajax-loader .paw .icon {
+  fill: var(--color-mariner);
+}
+
+.faq-ajax-loader .paw:nth-child(odd) {
+  transform: rotate(-10deg);
+}
+
+.faq-ajax-loader .paw:nth-child(even) {
+  transform: rotate(10deg) translate(150%, 0);
+}
+
+.no-cssanimations .faq-ajax-loader .paw {
+  opacity: 1;
+}
+
+
 /* ===================== TABLET (>= 768px) ===================== */
 @media (min-width: 768px) {
   .faq-title {
     margin-bottom: 80px;
+  }
+
+  .faq-ajax-loader {
+    top: -5%;
+    left: -5%;
+    transform: rotate(300deg) translate(-50%, 0%);
+    font-size: 76px;
+  }
+
+  .faq-ajax-loader .paw:nth-child(even) {
+    transform: rotate(10deg) translate(125%, 0);
   }
 }
 
@@ -125,5 +185,16 @@
 
   .faq-form.ac-form:last-child {
     padding: 0 23px 24px;
+  }
+
+  .faq-ajax-loader {
+    top: -4%;
+    left: 0%;
+    transform: rotate(290deg) translate(-50%, 0%);
+    font-size: 100px;
+  }
+
+  .faq-ajax-loader .paw:nth-child(even) {
+    transform: rotate(10deg) translate(140%, 0);
   }
 }
