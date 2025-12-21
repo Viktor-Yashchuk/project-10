@@ -99,26 +99,3 @@ refs.petsList.addEventListener('click', e => {
 
   openPetModal(pet);
 });
-
-// refs.petsList.addEventListener('keydown', e => {
-//     const btn = e.target.closest('.pets-modal-btn');
-//     if (!btn) return;
-
-//     if (e.key === 'Enter' || e.key === ' ') {
-//         e.preventDefault();
-//     const card = btn.closest('.pets-item');
-//     const pet = {
-//     id: card.dataset.id,
-//     image: card.querySelector('.pets-img')?.src || '',
-//     species: card.querySelector('.pets-species')?.textContent || '',
-//     name: card.querySelector('.pets-name')?.textContent || '',
-//     age: card.querySelector('.pets-info p:nth-child(1)')?.textContent || '',
-//     gender: card.querySelector('.pets-info p:nth-child(2)')?.textContent || '',
-//     description: card.dataset.description || '',
-//     health: card.dataset.health || '',
-//     behavior: card.dataset.behavior || '',
-//     };
-
-//     openPetModal(pet);
-//     }
-// });
