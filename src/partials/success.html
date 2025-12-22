@@ -1,6 +1,8 @@
-<section class="success" id="success">
+<section class="success" id="success" aria-labelledby="success-title">
   <div class="container success-container">
-    <h2 class="success-title">Щасливі історії, що надихають</h2>
+    <h2 class="success-title" id="success-title">
+      Щасливі історії, що надихають
+    </h2>
     <p class="success-subtitle">
       Ці хвостики вже знайшли свій дім. Ваш майбутній друг теж чекає на вас
     </p>
@@ -24,7 +26,12 @@
       </symbol>
     </svg>
 
-    <div class="swiper success-swiper">
+    <div
+      class="swiper success-swiper"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Щасливі історії. Слайдер"
+    >
       <ul class="swiper-wrapper success-list"></ul>
       <div class="success-navigation">
         <div class="success-pagination-box">
@@ -41,7 +48,12 @@
             aria-label="Попередній слайд"
             type="button"
           >
-            <svg class="success-arrow-back" width="24" height="24">
+            <svg
+              class="success-arrow-back"
+              width="24"
+              height="24"
+              aria-hidden="true"
+            >
               <use href="/public/sprite.svg#icon-arrow-back"></use>
             </svg>
           </button>
@@ -50,7 +62,12 @@
             aria-label="Наступний слайд"
             type="button"
           >
-            <svg class="success-arrow-forward" width="24" height="24">
+            <svg
+              class="success-arrow-forward"
+              width="24"
+              height="24"
+              aria-hidden="true"
+            >
               <use href="/public/sprite.svg#icon-arrow-forward"></use>
             </svg>
           </button>

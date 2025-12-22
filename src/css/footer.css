@@ -1,6 +1,7 @@
 .footer {
   background-color: var(--color-mariner);
   min-width: 320px;
+  padding: 64px 0;
 }
 
 .footer-container {

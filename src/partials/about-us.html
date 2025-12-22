@@ -1,22 +1,27 @@
-<section class="about" id="about-us">
+<section class="about" id="about-us" aria-labelledby="about-title">
   <div class="container about-container">
-    <h2 class="about-title">Чому Хатинка Лапок</h2>
-    <div class="swiper about-mySwiper">
+    <h2 class="about-title" id="about-title">Чому Хатинка Лапок</h2>
+    <div
+      class="swiper about-mySwiper"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Переваги притулку. Слайдер"
+    >
       <div class="swiper-wrapper about-swiper-wrapper"></div>
     </div>
-    <div class="about-swiper-navigation">
-      <div
-        class="swiper-pagination"
-        role="navigation"
-        aria-label="Пагінація слайдів"
-      ></div>
+    <div
+      class="about-swiper-navigation"
+      role="group"
+      aria-label="Керування слайдером"
+    >
+      <div class="swiper-pagination" aria-label="Пагінація слайдів"></div>
       <div class="about-swiper-btns">
         <button
           type="button"
           class="about-swiper-button-prev about-btn-disabled"
           aria-label="Попередній слайд"
         >
-          <svg class="about-icon" width="24" height="24">
+          <svg class="about-icon" width="24" height="24" aria-hidden="true">
             <use href="/public/sprite.svg#icon-arrow-back"></use>
           </svg>
         </button>
@@ -25,7 +30,7 @@
           class="about-swiper-button-next about-btn-disabled"
           aria-label="Наступний слайд"
         >
-          <svg class="about-icon" width="24" height="24">
+          <svg class="about-icon" width="24" height="24" aria-hidden="true">
             <use href="/public/sprite.svg#icon-arrow-forward"></use>
           </svg>
         </button>
