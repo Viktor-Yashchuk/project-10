@@ -1,9 +1,3 @@
-@media (max-width: 374px) {
-  .ac {
-    scroll-margin-top: 76px;
-  }
-}
-
 .faq {
   position: relative;
   overflow: hidden;
@@ -37,6 +31,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  min-width: 320px;
   width: 100%;
   padding: 20px 24px;
   border: none;
@@ -45,11 +40,13 @@
   color: inherit;
   line-height: 0.5;
   transition: background-color 500ms ease-in-out, transform 500ms ease-in-out;
+  width: clamp(280px, calc(100vw - 40px), 335px);
 }
 
 .ac-trigger:hover {
   background-color: var(--color-mariner);
   transform: scale(1.007);
+  transition: background-color 500ms ease-in-out, transform 500ms ease-in-out;
 }
 
 .ac-panel {
@@ -120,12 +117,6 @@
 
 .ac.is-active .faq-icon svg {
   transform: rotate(135deg);
-}
-
-.ac-trigger:hover {
-  background-color: var(--color-mariner);
-  transform: scale(1.007);
-  transition: background-color 500ms ease-in-out, transform 500ms ease-in-out;
 }
 
 .faq-ajax-loader {
