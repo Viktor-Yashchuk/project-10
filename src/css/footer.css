@@ -44,8 +44,8 @@
   height: 1px;
   background-color: currentColor;
   transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 250ms ease-in-out;
+  transform-origin: center;
+  transition: transform 500ms ease-in-out;
 }
 
 .footer-nav-item:hover::after,
