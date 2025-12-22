@@ -1,14 +1,4 @@
-const burgerBtn = document.querySelector('.burger-btn');
-const mobileMenu = document.querySelector('.mobile-menu');
-const closeBtn = document.querySelector('.mobile-menu-btn');
-const mobileMenuContainer = document.querySelector('.mobile-menu-container');
-const mobileLinks = document.querySelectorAll(
-  '.mobile-menu-nav-link, .mobile-menu-button'
-);
-const burgerTopLine = document.querySelector('.mobile-burger-menu-top-line');
-const burgerMidLine = document.querySelector('.mobile-burger-menu-mid-line');
-const burgerBotLine = document.querySelector('.mobile-burger-menu-bot-line');
-const header = document.querySelector('.header');
+import { refs } from './refs';
 
 const onEscPress = event => {
   if (event.key === 'Escape') {
@@ -17,29 +7,23 @@ const onEscPress = event => {
 };
 
 const burgerMenuAnim = () => {
-  burgerTopLine.classList.toggle('top-line');
-  burgerMidLine.classList.toggle('mid-line');
-  burgerBotLine.classList.toggle('bot-line');
+  refs.headerBurgerTopLine.classList.toggle('top-line');
+  refs.headerBurgerMidLine.classList.toggle('mid-line');
+  refs.headerBurgerBotLine.classList.toggle('bot-line');
 };
 
 const closeBurgerMenuAnim = () => {
-  burgerTopLine.classList.remove('top-line');
-  burgerMidLine.classList.remove('mid-line');
-  burgerBotLine.classList.remove('bot-line');
-};
-
-const openBurgerMenuAnim = () => {
-  burgerTopLine.classList.add('top-line');
-  burgerMidLine.classList.add('mid-line');
-  burgerBotLine.classList.add('bot-line');
+  refs.headerBurgerTopLine.classList.remove('top-line');
+  refs.headerBurgerMidLine.classList.remove('mid-line');
+  refs.headerBurgerBotLine.classList.remove('bot-line');
 };
 
 const openMobileMenu = () => {
   document.body.style.overflow = 'hidden';
   document.addEventListener('keydown', onEscPress);
 
-  mobileMenu.classList.toggle('is-open');
-  if (mobileMenu.className !== 'mobile-menu is-open')
+  refs.headerMobileMenu.classList.toggle('is-open');
+  if (refs.headerMobileMenu.className !== 'mobile-menu is-open')
     document.body.style.overflow = '';
 
   burgerMenuAnim();
@@ -47,7 +31,7 @@ const openMobileMenu = () => {
 
 const closeMobileMenu = () => {
   document.body.style.overflow = '';
-  mobileMenu.classList.remove('is-open');
+  refs.headerMobileMenu.classList.remove('is-open');
   document.removeEventListener('keydown', onEscPress);
 
   closeBurgerMenuAnim();
@@ -71,18 +55,18 @@ const onHeaderClick = event => {
   closeMobileMenu();
 };
 
-burgerBtn.addEventListener('click', openMobileMenu);
-header.addEventListener('click', onHeaderClick);
-mobileMenu.addEventListener('click', onBackdropClick);
+refs.headerBurgerBtn.addEventListener('click', openMobileMenu);
+refs.header.addEventListener('click', onHeaderClick);
+refs.headerMobileMenu.addEventListener('click', onBackdropClick);
 
-mobileLinks.forEach(link => {
+refs.headerMobileLinks.forEach(link => {
   link.addEventListener('click', closeMobileMenu);
 });
 
 window.addEventListener('resize', () => {
   if (innerWidth >= 1440) {
     document.body.style.overflow = '';
-    mobileMenu.classList.remove('is-open');
+    refs.headerMobileMenu.classList.remove('is-open');
     closeMobileMenu();
   }
 });

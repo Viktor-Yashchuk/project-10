@@ -488,3 +488,7 @@
     right: 62px;
   }
 }
+
+body .swal2-backdrop-show {
+  backdrop-filter: blur(5px);
+}

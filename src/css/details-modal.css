@@ -25,6 +25,7 @@
   overflow-y: auto;
   width: clamp(280px, calc(100vw - 40px), 335px);
   overflow-x: hidden;
+  outline: transparent;
 }
 
 .details-modal::-webkit-scrollbar {

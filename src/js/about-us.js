@@ -4,9 +4,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { BASE } from './config';
-
-const aboutBtnForward = document.querySelector('.about-swiper-button-next');
-const aboutBtnBack = document.querySelector('.about-swiper-button-prev');
+import { refs } from './refs';
 
 const data = [
   {
@@ -36,8 +34,9 @@ const data = [
   },
 ];
 
-const aboutRender = data.map(({ id, description }) => {
-  return `<div class="swiper-slide about-slide">
+const aboutRender = data
+  .map(({ id, description }) => {
+    return `<div class="swiper-slide about-slide">
           <picture>
             <source
               media="(min-width: 1440px)"
@@ -57,12 +56,14 @@ const aboutRender = data.map(({ id, description }) => {
           <p class="about-id">${description}</p>
           </div>
         </div>`;
-}).join('');
+  })
+  .join('');
 
-document.querySelector('.about-swiper-wrapper').innerHTML = aboutRender;
+refs.aboutSwiperWrapper.innerHTML = aboutRender;
 
 const swiper = new Swiper('.about-mySwiper', {
   modules: [Navigation, Pagination, Keyboard],
+  speed: 1000,
   loop: false,
   slidesPerView: 1,
   spaceBetween: 10,
@@ -83,13 +84,12 @@ const swiper = new Swiper('.about-mySwiper', {
 });
 
 function updatePaginationPosition() {
-  const paginationEl = document.querySelector('.about .swiper-pagination');
   if (window.innerWidth < 768) {
-    paginationEl.classList.remove('center');
-    paginationEl.classList.add('left');
+    refs.aboutPaginationElem.classList.remove('center');
+    refs.aboutPaginationElem.classList.add('left');
   } else {
-    paginationEl.classList.remove('left');
-    paginationEl.classList.add('center');
+    refs.aboutPaginationElem.classList.remove('left');
+    refs.aboutPaginationElem.classList.add('center');
   }
 }
 
@@ -98,20 +98,20 @@ window.addEventListener('resize', updatePaginationPosition);
 
 const updateNavigationState = () => {
   if (swiper.isEnd) {
-    aboutBtnForward.classList.add('about-btn-disabled');
+    refs.aboutBtnForward.classList.add('about-btn-disabled');
   } else {
-    aboutBtnForward.classList.remove('about-btn-disabled');
+    refs.aboutBtnForward.classList.remove('about-btn-disabled');
   }
   if (swiper.isBeginning) {
-    aboutBtnBack.classList.add('about-btn-disabled');
+    refs.aboutBtnBack.classList.add('about-btn-disabled');
   } else {
-    aboutBtnBack.classList.remove('about-btn-disabled');
+    refs.aboutBtnBack.classList.remove('about-btn-disabled');
   }
 };
 swiper.on('slideChange', updateNavigationState);
 updateNavigationState();
 
-const aboutSection = document.querySelector('.about');
+const aboutSection = refs.aboutSection;
 
 swiper.on('slideChangeTransitionStart', () => {
   if (!aboutSection) return;

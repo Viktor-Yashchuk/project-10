@@ -2,7 +2,6 @@ import { BASE } from './config.js';
 import { refs } from './refs.js';
 import { openOrderModal } from './order-modal.js';
 
-
 function createPetModalMarkup(pet) {
   return `
     <div class="details-modal-backdrop" data-details-modal-backdrop>
@@ -12,18 +11,24 @@ function createPetModalMarkup(pet) {
         <use href="${BASE}sprite.svg#icon-close2"></use></svg></button>
         <div class="details-modal-body">
           <div class="details-modal-left">
-            <img class="details-modal-img" src="${pet.image}" alt="${pet.species}" />
+            <img class="details-modal-img" src="${pet.image}" alt="${
+    pet.species
+  }" />
           </div>
           <div class="details-modal-right">
             <p class="details-modal-species">${pet.species}</p>
-            <h3 id="details-modal-title" class="details-modal-name">${pet.name}</h3>
+            <h3 id="details-modal-title" class="details-modal-name">${
+              pet.name
+            }</h3>
             <div class="details-modal-info">
               <p>${pet.age}</p>
               <p>${pet.gender}</p>
             </div>
 
             <h4 class="details-modal-subtitle">Опис:</h4>
-            <p id="details-modal-description" class="details-modal-description">${pet.description || '—'}</p>
+            <p id="details-modal-description" class="details-modal-description">${
+              pet.description || '—'
+            }</p>
 
             <h4 class="details-modal-subtitle">Здоровʼя:</h4>
             <p class="details-modal-health">${pet.health || '—'}</p>
@@ -42,6 +47,8 @@ function openPetModal(pet) {
   const markup = createPetModalMarkup(pet);
   document.body.insertAdjacentHTML('beforeend', markup);
 
+  const scrollBarWidth =
+    window.innerWidth - document.documentElement.clientWidth;
   document.body.classList.add('body-lock');
 
   const backdrop = document.querySelector('[data-details-modal-backdrop]');
@@ -89,8 +96,8 @@ refs.petsList.addEventListener('click', e => {
     name: card.querySelector('.pets-name')?.textContent || '',
     age: card.querySelector('.pets-info p:nth-child(1)')?.textContent || '',
     gender: card.querySelector('.pets-info p:nth-child(2)')?.textContent || '',
-    description: card.dataset.description || '',   
-    health: card.dataset.health || '',             
+    description: card.dataset.description || '',
+    health: card.dataset.health || '',
     behavior: card.dataset.behavior || '',
   };
 

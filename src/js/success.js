@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { refs } from './refs';
 import Swiper from 'swiper';
-import { Navigation, Pagination, Keyboard, Mousewheel } from 'swiper/modules';
+import { Navigation, Keyboard, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import Raty from 'raty-js';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
@@ -46,10 +45,97 @@ async function loadedSuccessSection() {
       });
       raty.init();
     });
+
+    const successSwiper = new Swiper('.success-swiper', {
+      modules: [Navigation, Keyboard, Mousewheel],
+      speed: 1000,
+      spaceBetween: 32,
+      slidesPerView: 1,
+      loop: false,
+      wrapperClass: 'success-list',
+      slideClass: 'success-item',
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+      },
+      mousewheel: {
+        enabled: true,
+      },
+      navigation: {
+        nextEl: '.success-button-forward',
+        prevEl: '.success-button-back',
+        disabledClass: '.success-btn-disabled',
+      },
+      breakpoints: {
+        767: {
+          slidesPerView: 2,
+        },
+      },
+    });
+
+    const bullets = [];
+    const bulletStep = 8 + 8;
+    const bulletCount = 6;
+    let totalBullets = successSwiper.slides.length;
+
+    for (let i = 0; i < totalBullets; i++) {
+      const bullet = document.createElement('span');
+      bullet.classList.add('success-bullet');
+      bullet.dataset.index = i;
+
+      bullet.addEventListener('click', () => {
+        successSwiper.slideTo(i);
+      });
+
+      refs.successPagination.appendChild(bullet);
+      bullets.push(bullet);
+    }
+
+    function dynamicPagination(index) {
+      bullets.forEach(b => b.classList.remove('active', 'near', 'far'));
+
+      bullets[index].classList.add('active');
+
+      if (bullets[index - 1]) bullets[index - 1].classList.add('near');
+      if (bullets[index + 1]) bullets[index + 1].classList.add('near');
+      if (bullets[index - 2]) bullets[index - 2].classList.add('far');
+      if (bullets[index + 2]) bullets[index + 2].classList.add('far');
+
+      const maxShift = totalBullets - bulletCount;
+
+      let shiftIndex = index - 2;
+      shiftIndex = Math.max(0, Math.min(shiftIndex, maxShift));
+
+      refs.successPagination.style.transform = `translateX(${
+        -shiftIndex * bulletStep
+      }px)`;
+    }
+
+    successSwiper.on('slideChange', () => {
+      dynamicPagination(successSwiper.activeIndex);
+    });
+
+    dynamicPagination(0);
+
+    successSwiper.on('slideChange', () => {
+      if (successSwiper.isEnd) {
+        refs.successBtnForward.classList.add('success-btn-disabled');
+      } else {
+        refs.successBtnForward.classList.remove('success-btn-disabled');
+      }
+    });
+
+    successSwiper.on('slideChange', () => {
+      if (successSwiper.isBeginning) {
+        refs.successBtnBack.classList.add('success-btn-disabled');
+      } else {
+        refs.successBtnBack.classList.remove('success-btn-disabled');
+      }
+    });
   } catch (err) {
     iziToast.error({
       message: 'Error',
-      position: 'center',
+      position: 'topRight',
     });
   }
 }
@@ -71,61 +157,8 @@ const renderFeedback = feedbacks => {
   refs.successList.innerHTML = markup;
 };
 
-const swiper = new Swiper('.success-swiper', {
-  modules: [Navigation, Pagination, Keyboard, Mousewheel],
-  spaceBetween: 32,
-  slidesPerView: 1,
-  loop: false,
-  wrapperClass: 'success-list',
-  slideClass: 'success-item',
-  keyboard: {
-    enabled: true,
-    onlyInViewport: true,
-  },
-  mousewheel: {
-    enabled: true,
-  },
-  pagination: {
-    el: '.success-swiper-pagination',
-    type: 'bullets',
-    clickable: true,
-    dynamicBullets: true,
-    dynamicMainBullets: 4,
-  },
-  navigation: {
-    nextEl: '.success-button-forward',
-    prevEl: '.success-button-back',
-    disabledClass: '.success-btn-disabled',
-  },
-  breakpoints: {
-    767: {
-      slidesPerView: 2,
-      pagination: {
-        dynamicBullets: true,
-        dynamicMainBullets: 1,
-      },
-    },
-  },
-});
-
-swiper.on('slideChange', () => {
-  if (swiper.isEnd) {
-    refs.successBtnForward.classList.add('success-btn-disabled');
-  } else {
-    refs.successBtnForward.classList.remove('success-btn-disabled');
-  }
-});
-
-swiper.on('slideChange', () => {
-  if (swiper.isBeginning) {
-    refs.successBtnBack.classList.add('success-btn-disabled');
-  } else {
-    refs.successBtnBack.classList.remove('success-btn-disabled');
-  }
-});
-
 const successAnim = refs.successAnimation;
-const total = 30;
+const total = 15;
 
 for (let i = 0; i < total; i++) {
   const paw = document.createElement('div');
