@@ -123,7 +123,7 @@ const renderFaqItem = ({ q, blocks = [] }) => `
       </button>
     </h3>
 
-    <div class="ac-panel">
+    <div class="ac-panel" role="region" aria-labelledby="Питання">
       <div class="faq-content">
         ${blocks.map(renderBlock).join('')}
       </div>

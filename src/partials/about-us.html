@@ -5,17 +5,26 @@
       <div class="swiper-wrapper about-swiper-wrapper"></div>
     </div>
     <div class="about-swiper-navigation">
-      <div class="swiper-pagination"></div>
+      <div
+        class="swiper-pagination"
+        role="navigation"
+        aria-label="Пагінація слайдів"
+      ></div>
       <div class="about-swiper-btns">
         <button
           type="button"
           class="about-swiper-button-prev about-btn-disabled"
+          aria-label="Попередній слайд"
         >
           <svg class="about-icon" width="24" height="24">
             <use href="/public/sprite.svg#icon-arrow-back"></use>
           </svg>
         </button>
-        <button type="button" class="about-swiper-button-next about-btn-disabled">
+        <button
+          type="button"
+          class="about-swiper-button-next about-btn-disabled"
+          aria-label="Наступний слайд"
+        >
           <svg class="about-icon" width="24" height="24">
             <use href="/public/sprite.svg#icon-arrow-forward"></use>
           </svg>

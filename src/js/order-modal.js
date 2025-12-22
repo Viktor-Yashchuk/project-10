@@ -26,8 +26,9 @@ function createOrderModalMarkup() {
               minlength="2"
               maxlength="30"
               autocomplete="off"
+              aria-describedby="username-error"
             />
-            <span class="error-message">Ім’я має містити лише літери, пробіли, апострофи та дефіси.</span>
+            <span id="username-error" class="error-message">Ім’я має містити лише літери, пробіли, апострофи та дефіси.</span>
           </label>
 
           <label class="order-modal-label" for="phone">
@@ -56,6 +57,7 @@ function createOrderModalMarkup() {
               placeholder="Напишіть ваш коментар"
               maxlength="300"
               autocomplete="off"
+              aria-describedby="comment-error comment-counter"
             ></textarea>
             <span id="comment-error" class="error-message"></span>
             <span id="comment-counter" class="counter"></span>

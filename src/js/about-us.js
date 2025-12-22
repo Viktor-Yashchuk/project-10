@@ -36,7 +36,7 @@ const data = [
 
 const aboutRender = data
   .map(({ id, description }) => {
-    return `<div class="swiper-slide about-slide">
+    return `<div class="swiper-slide about-slide" role="group" aria-label="Слайд ${id} із ${data.length}">
           <picture>
             <source
               media="(min-width: 1440px)"
@@ -50,7 +50,7 @@ const aboutRender = data
             <img 
               class="about-picture"
               src="${BASE}about-us/mobile/slide-p${id}-mob.webp"
-              alt="slide" loading="lazy" decoding="async"/>
+              alt="Ілюстрація до історії притулку ${id}" loading="lazy" decoding="async"/>
           </picture>
           <div class="about-overlay">
           <p class="about-id">${description}</p>

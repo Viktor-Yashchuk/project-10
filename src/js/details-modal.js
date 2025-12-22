@@ -5,15 +5,15 @@ import { openOrderModal } from './order-modal.js';
 function createPetModalMarkup(pet) {
   return `
     <div class="details-modal-backdrop" data-details-modal-backdrop>
-      <div class="details-modal" role="dialog" aria-modal="true" aria-labelledby="details-modal-title" aria-describedby="details-modal-description">
+      <div class="details-modal" role="dialog" aria-modal="true" aria-labelledby="details-modal-title" aria-describedby="details-modal-description" aria-label="Деталі про тваринку">
         <button class="details-modal-close" type="button" aria-label="Закрити" data-details-modal-close>
         <svg class="details-modal-close-icon" width="14" height="14">
         <use href="${BASE}sprite.svg#icon-close2"></use></svg></button>
         <div class="details-modal-body">
           <div class="details-modal-left">
-            <img class="details-modal-img" src="${pet.image}" alt="${
+            <img class="details-modal-img" src="${pet.image}" alt="Фото ${
     pet.species
-  }" />
+  } на ім'я ${pet.name}" />
           </div>
           <div class="details-modal-right">
             <p class="details-modal-species">${pet.species}</p>
@@ -25,30 +25,66 @@ function createPetModalMarkup(pet) {
               <p>${pet.gender}</p>
             </div>
 
-            <h4 class="details-modal-subtitle">Опис:</h4>
-            <p id="details-modal-description" class="details-modal-description">${
+            <h4 id="details-description-title" class="details-modal-subtitle">Опис:</h4>
+            <p id="details-modal-description" class="details-modal-description"  aria-labelledby="details-description-title">${
               pet.description || '—'
             }</p>
 
-            <h4 class="details-modal-subtitle">Здоровʼя:</h4>
-            <p class="details-modal-health">${pet.health || '—'}</p>
+            <h4 id="details-health-title" class="details-modal-subtitle">Здоровʼя:</h4>
+            <p class="details-modal-health" aria-labelledby="details-health-title">${pet.health || '—'}</p>
 
-            <h4 class="details-modal-subtitle">Поведінка:</h4>
-            <p class="details-modal-behavior">${pet.behavior || '—'}</p>
+            <h4 id="details-behavior-title" class="details-modal-subtitle">Поведінка:</h4>
+            <p class="details-modal-behavior" aria-labelledby="details-behavior-title">${pet.behavior || '—'}</p>
 
-            <button class="details-modal-adopt-btn" type="button" data-details-modal-adopt>Взяти додому</button>
+            <button class="details-modal-adopt-btn" type="button" data-details-modal-adopt aria-label="Взяти тваринку додому">Взяти додому</button>
           </div>
         </div>
       </div>
     </div>`;
 }
 
+function trapFocus(modal) {
+  const focusableSelectors = [
+    'a[href]',
+    'button:not([disabled])',
+    'textarea:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])'
+  ];
+  const focusableElements = modal.querySelectorAll(focusableSelectors.join(','));
+  if (focusableElements.length === 0) return;
+
+  const firstEl = focusableElements[0];
+  const lastEl = focusableElements[focusableElements.length - 1];
+
+  modal.addEventListener('keydown', e => {
+    if (e.key === 'Tab') {
+      if (e.shiftKey) {
+        
+        if (document.activeElement === firstEl) {
+          e.preventDefault();
+          lastEl.focus();
+        }
+      } else {
+
+        if (document.activeElement === lastEl) {
+          e.preventDefault();
+          firstEl.focus();
+        }
+      }
+    }
+ 
+    if (e.key === ' ' && document.activeElement === modal) {
+      e.preventDefault();
+    }
+  });
+}
+
 function openPetModal(pet) {
   const markup = createPetModalMarkup(pet);
   document.body.insertAdjacentHTML('beforeend', markup);
 
-  const scrollBarWidth =
-    window.innerWidth - document.documentElement.clientWidth;
   document.body.classList.add('body-lock');
 
   const backdrop = document.querySelector('[data-details-modal-backdrop]');
@@ -58,6 +94,7 @@ function openPetModal(pet) {
 
   modal.setAttribute('tabindex', '-1');
   modal.focus();
+  trapFocus(modal);
 
   closeBtn.addEventListener('click', () => closePetModal(backdrop));
 

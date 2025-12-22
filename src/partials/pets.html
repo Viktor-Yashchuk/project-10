@@ -4,7 +4,13 @@
     <p class="pets-subtitle">Вони дуже чекають на знайомство з вами</p>
     <ul class="pets-ctgs-list" role="list"></ul>
     <ul class="pets-list" role="list"></ul>
-    <img class="pets-loader" src="/img/loader.gif" alt="Loading" />
+    <img
+      class="pets-loader"
+      src="/img/loader.gif"
+      alt="Завантаження..."
+      role="status"
+      aria-live="polite"
+    />
     <button
       class="pets-load-btn"
       type="button"
@@ -12,6 +18,10 @@
     >
       Показати більше
     </button>
-    <ul class="pets-pagination" role="list"></ul>
+    <ul
+      class="pets-pagination"
+      role="navigation"
+      aria-label="Пагінація карток тварин"
+    ></ul>
   </div>
 </section>
