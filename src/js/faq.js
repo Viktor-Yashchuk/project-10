@@ -94,8 +94,6 @@ const faqData = [
   }
 ];
 
-const getListClass = type => (type === 'ol' ? 'ac-text-list faq-list' : 'ac-text-list');
-
 const renderBlock = block => {
   if (block.type === 'p') {
     return `<p>${block.text}</p>`;
