@@ -134,8 +134,20 @@ async function loadedSuccessSection() {
     });
   } catch (err) {
     iziToast.error({
-      message: 'Error',
+      title: '',
+      message: 'Шось воно не робе!',
       position: 'topRight',
+      iconUrl: `${BASE}public/error.svg`,
+      messageColor: '#fafafb',
+      messageSize: '16',
+      titleWeight: '700',
+      backgroundColor: '#ef4040',
+      progressBarColor: '#b51b1b',
+      timeout: 3000,
+      maxWidth: 432,
+      theme: 'dark',
+      close: true,
+      class: 'my-toast',
     });
   }
 }

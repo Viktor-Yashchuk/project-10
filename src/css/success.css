@@ -232,3 +232,16 @@ body .success .swiper-pagination-bullet-active {
     transform: rotate(10deg) translate(140%, 0);
   }
 }
+
+body .iziToast.my-toast>.iziToast-close {
+  background: url("/public/close.svg") no-repeat center center;
+  background-size: auto;
+  opacity: 1;
+  transition: none;
+}
+
+body .iziToast.my-toast>.iziToast-close:hover {
+  background: url("/public/close.svg") no-repeat center center;
+  background-size: 18px 18px;
+  opacity: 1;
+}

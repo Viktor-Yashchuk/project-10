@@ -31,11 +31,22 @@ const isMobile = () => {
 
 //toast
 const toastError = mess =>
-  iziToast.show({
-    message: `Error: ${mess}`,
+  iziToast.error({
+    title: '',
+    message: `Помилка бекенду від "GoIt": 
+    ${mess}`,
     position: 'topRight',
-    color: 'red',
-    close: false,
+    iconUrl: `${BASE}public/error.svg`,
+    messageColor: '#fafafb',
+    messageSize: '16',
+    titleWeight: '700',
+    backgroundColor: '#ef4040',
+    progressBarColor: '#b51b1b',
+    timeout: 3000,
+    maxWidth: 432,
+    theme: 'dark',
+    close: true,
+    class: 'my-toast',
   });
 
 //pagination
@@ -214,9 +225,14 @@ const getPets = async (page, categoryId) => {
 const renderPets = arr =>
   arr
     .map(
-      el => `<li class="pets-item" role="listitem" data-id="${el._id}" data-description="${el.description || ''}" data-health="${el.healthStatus ||
-        ''}" data-behavior="${el.behavior || ''}">
-    <img class="pets-img" src="${el.image}" alt="${el.species}" loading="lazy" decoding="async">
+      el => `<li class="pets-item" role="listitem" data-id="${
+        el._id
+      }" data-description="${el.description || ''}" data-health="${
+        el.healthStatus || ''
+      }" data-behavior="${el.behavior || ''}">
+    <img class="pets-img" src="${el.image}" alt="${
+        el.species
+      }" loading="lazy" decoding="async">
     <p class="pets-species">${el.species}</p>
     <h3 class="pets-name">${el.name}</h3>
     <ul class="pets-own-ctgs-list">${el.categories
@@ -247,17 +263,16 @@ const initPets = async (page, categoryId) => {
       );
     } else refs.petsList.innerHTML = renderPets(pets.data.animals);
 
-      totalItems = pets.data.totalItems;
-      
-      const cards = refs.petsList.querySelectorAll('.pets-item');
-      cards.forEach((card, index) => {
-          const pet = pets.data.animals[index];
-          if(!pet) return
+    totalItems = pets.data.totalItems;
+
+    const cards = refs.petsList.querySelectorAll('.pets-item');
+    cards.forEach((card, index) => {
+      const pet = pets.data.animals[index];
+      if (!pet) return;
       card.dataset.description = pet.description || '';
       card.dataset.health = pet.healthStatus || '';
       card.dataset.behavior = pet.behavior || '';
-      });
-      
+    });
   } catch (err) {
     toastError(err.message);
   }

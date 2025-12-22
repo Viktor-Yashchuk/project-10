@@ -329,3 +329,16 @@
     height: 60px;
   }
 }
+
+body .iziToast.my-toast>.iziToast-close {
+  background: url("/public/close.svg") no-repeat center center;
+  background-size: auto;
+  opacity: 1;
+  transition: none;
+}
+
+body .iziToast.my-toast>.iziToast-close:hover {
+  background: url("/public/close.svg") no-repeat center center;
+  background-size: 18px 18px;
+  opacity: 1;
+}

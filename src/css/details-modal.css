@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   backdrop-filter: blur(5px);
-  background: var(--modal-overlay);
+  background-color: var(--modal-overlay);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,6 +26,7 @@
   width: clamp(280px, calc(100vw - 40px), 335px);
   overflow-x: hidden;
   outline: transparent;
+  animation: fadeDown 0.9s ease forwards;
 }
 
 .details-modal::-webkit-scrollbar {
@@ -60,7 +61,7 @@
   border: none;
   cursor: pointer;
   transition: background-color 500ms ease-in-out, border 500ms ease-in-out,
-    transform 500ms ease-in-out;
+  transform 500ms ease-in-out;
 }
 
 .details-modal-close:hover,
@@ -306,3 +307,5 @@
     font-size: 16px;
   }
 }
+
+
