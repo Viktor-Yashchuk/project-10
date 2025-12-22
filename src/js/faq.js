@@ -117,7 +117,7 @@ const renderFaqItem = ({ q, blocks = [] }) => `
         <span class="faq-question">${q}</span>
         <span class="faq-icon">
           <svg aria-hidden="true" width="24" height="24">
-            <use href="${BASE}public/sprite.svg#icon-add"></use>
+            <use href="${BASE}sprite.svg#icon-add"></use>
           </svg>
         </span>
       </button>

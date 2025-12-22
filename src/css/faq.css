@@ -1,6 +1,7 @@
 .faq {
   position: relative;
   overflow: hidden;
+  min-width: 320px;
 }
 
 .accordion-container {
