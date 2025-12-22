@@ -3,13 +3,20 @@
   overflow: hidden;
   margin: 0 auto;
   min-width: 320px;
-  height: 544px;
+  height: clamp(544px, calc(544px + 356 * ((100vw - 320px) / 1120)), 900px);
+  /* min-height: 544px;
+  height: clamp(544px, 60vh, 900px); */
 }
 
 .hero-background {
   position: absolute;
   inset: 0;
   z-index: 0;
+}
+
+.hero-background,
+.hero-section::before {
+  pointer-events: none;
 }
 
 .hero-picture {
@@ -95,9 +102,9 @@
 }
 
 @media only screen and (min-width: 1440px) {
-  .hero-section {
+  /* .hero-section {
     height: 900px;
-  }
+  } */
 
   .hero-title {
     font-size: 56px;

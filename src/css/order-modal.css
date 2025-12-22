@@ -145,8 +145,8 @@
   font-size: 14px;
   color: var(--color-white);
   margin: 0 auto;
-  transition: transform, background-color 500ms ease-in-out,
-    box-shadow 500ms ease-in-out, color 500ms ease-in-out;
+  transition: background-color 500ms ease-in-out, box-shadow 500ms ease-in-out,
+    color 500ms ease-in-out;
 }
 
 .order-modal-send-button:hover,
@@ -154,7 +154,6 @@
   border: 1px solid var(--color-mariner-dark);
   background-color: var(--input-bc-focus);
   color: var(--color-neutral-darkest);
-  transform: scale(1.02);
 }
 
 .order-modal-send-button:active {

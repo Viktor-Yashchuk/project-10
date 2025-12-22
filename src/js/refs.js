@@ -9,6 +9,7 @@ export const refs = {
   petsLoadBtn: document.querySelector('.pets-load-btn'),
   petsLoader: document.querySelector('.pets-loader'),
   petsPagination: document.querySelector('.pets-pagination'),
+  faqListEl: document.querySelector('#faqList'),
   aboutSection: document.querySelector('.about'),
   aboutBtnForward: document.querySelector('.about-swiper-button-next'),
   aboutBtnBack: document.querySelector('.about-swiper-button-prev'),

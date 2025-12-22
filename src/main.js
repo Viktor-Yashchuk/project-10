@@ -1,5 +1,3 @@
-import './css/styles.css';
-
 import './js/refs.js';
 import './js/header.js';
 import './js/pets.js';
