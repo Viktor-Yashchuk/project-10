@@ -105,7 +105,17 @@ npm install
 
 npm run start
 
-👩‍💻👨‍💻 Команда розробників:
+## 👩‍💻👨‍💻 Команда розробників:
 
-@Viktor-Yashchuk @Valentyna877 @TeaRediT @Uffaser @anna-borysova2025
-@Anna-makarova25 @vasilisa-fs @KarllWest @IrynaDmytrenko262 @KlimmN
+- [@Viktor-Yashchuk](https://github.com/Viktor-Yashchuk)
+- [@Valentyna877](https://github.com/Valentyna877)
+- [@TeaRediT](https://github.com/TeaRediT)
+- [@Uffaser](https://github.com/Uffaser)
+- [@anna-borysova2025](https://github.com/anna-borysova2025)
+- [@Anna-makarova25](https://github.com/Anna-makarova25)
+- [@vasilisa-fs](https://github.com/vasilisa-fs)
+- [@KarllWest](https://github.com/KarllWest)
+- [@IrynaDmytrenko262](https://github.com/IrynaDmytrenko262)
+- [@KlimmN](https://github.com/KlimmN)
+
+
