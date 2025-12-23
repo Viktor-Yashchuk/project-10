@@ -156,7 +156,7 @@ const renderFeedback = feedbacks => {
   const markup = feedbacks
     .map(
       feedback =>
-        `<li class="swiper-slide success-item" role="group" aria-label="Історія">
+        `<li class="swiper-slide success-item" role="listitem" aria-label="Історія">
             <div class="success-text-box">
                 <div class="success-rate-star-box rating" data-score="${feedback.rate}" aria-label="Оцінка"></div>
                 <p class="success-item-desc">${feedback.description}</p>
