@@ -6,7 +6,7 @@ import SortCss from 'postcss-sort-media-queries';
 
 export default defineConfig(({ mode, command }) => {
   return {
-    base: mode === 'production' ? '/project-10/' : '/',
+    base: mode === 'production' ? '/No-Bugs-Just-Pugs/' : '/',
     publicDir: 'public',
 
     define: {
